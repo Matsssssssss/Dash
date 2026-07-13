@@ -1,0 +1,175 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: #0f172a;
+    color: white;
+}
+
+.brand {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard {
+    padding: 24px;
+}
+
+.sumarry-reports {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sumarry-reports h1 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #b91c1c;
+}
+
+.sumarry-content {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.panel-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    min-width: 220px;
+    background: #eef4ff;
+    padding: 16px;
+    border-radius: 10px;
+    align-self: stretch;
+}
+
+.iloEOC,
+.iloMun,
+.related-incidents,
+.incident-card {
+    background: rgba(255, 255, 255, .75);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.iloEOC {
+    padding: 24px 16px;
+}
+
+.iloEOC,
+.iloMun {
+    text-align: center;
+}
+
+.panel-stack h2 {
+    margin: 0 0 8px;
+    padding: 0;
+}
+
+.iloEOC h2,
+.iloMun h2 {
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+.iloMun {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.iloMun h2 {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.iloMun .figure {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 0 0 12px;
+}
+
+.figure {
+    background: #e0f2fe;
+    padding: 15px;
+    border-radius: 8px;
+    color: #0f172a;
+}
+
+.iloEOC .figure {
+    background: #2563eb;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    padding: 16px 12px;
+    font-size: 1.05rem;
+}
+
+.related-incidents {
+    flex: 1.5;
+    background: #fff7ed;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.incident-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.incident-card {
+    background: white;
+    min-height: 100px;
+}
+
+@media (max-width: 900px) {
+    .sumarry-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    .incident-grid {
+        grid-template-columns: 1fr;
+    }
+}
