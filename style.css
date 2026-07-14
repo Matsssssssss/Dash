@@ -83,7 +83,7 @@ h2 {
 .effects-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 12px;
+    gap: 10px;
 }
 
 .effects-card {
@@ -92,10 +92,14 @@ h2 {
     border-radius: 10px;
     padding: 16px;
     min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    position: relative;
 }
 
 .third-row {
@@ -114,6 +118,7 @@ h2 {
     border: 1px solid #e2e8f0;
     border-radius: 10px;
     padding: 10px;
+    position: relative;
 }
 
 .flights-cancelled h2{
@@ -336,6 +341,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 15px;
     gap: 12px;
 }
 
@@ -390,10 +396,36 @@ h2 {
         max-width: 100%;
         flex: 1 1 auto;
     }
+
 }
 
 @media (max-width: 700px) {
     .incident-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+.effects-card h3 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+}
+
+.effects-card .effects-value {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.effects-card .incident-card-gif {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 100%;
+    min-width: 60px;
+    max-width: 150px;
+    justify-self: center;
+    align-self: center;
 }
