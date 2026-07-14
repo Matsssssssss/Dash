@@ -17,12 +17,16 @@
             <li><a href="#">Alerts</a></li>
             <li><a href="#">Reports</a></li>
         </ul>
-    </nav>
+    </nav>  <!--This is the end of top navigation bar-->
 
     <main class="dashboard">
-        <section class="sumarry-reports">
+
+        <!--This is the parent class container of the Typhoon Dashboard-->
+        <section class="sumarry-reports">  
             <h1>Typhoon Dashboard</h1>
-            <div class="sumarry-content">
+            <div class="sumarry-content">   <!--This division is for the 1st Row-->
+
+                <!--This is the 2nd container "1st Row, 1st Column" "Alert Status"-->
                 <section class="panel-stack" aria-label="EOC and municipality status">
                     <h2>I. ALERT STATUS</h2>
                     <article class="iloEOC">
@@ -36,8 +40,9 @@
                         <div class="figure blue">BLUE</div>
                         <div class="figure white">WHITE</div>
                     </article>
-                </section>
+                </section>  <!--End of the 1st container "1st Row, 1st Column"-->
 
+                <!--This is the 2nd container "1st Row, 2nd Column" "Related Incidents"-->
                 <section class="related-incidents">
                     <h2>II. RELATED INCIDENTS</h2>
                     <div class="incident-grid">
@@ -70,9 +75,86 @@
                             <img class="incident-card-gif" src="Images/relatedIncidents/brgysIncidents.png" alt="Barangay Incident Image">
                         </article>
                     </div>
+                </section>  <!--End of the 2nd container "1st Row, 2nd Column"-->
+            </div>  <!--End of division for the 1st Row, "Top"-->
+
+            <!--This is the 3rd container, "2nd Row"-->
+            <section class="effects-population">
+                <h2>III. EFFECTS TO POPULATION</h2>
+                <div class="effects-content">
+                    <div class="effects-grid">
+                        <div class="effects-card">
+                            <h3>No. of Casualty</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Municipalities Affected</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Brgys Affected</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Families Affected</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Persons Affected</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Partially Damaged Houses</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Totally Damaged Houses</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Evacuation Centers Utilized</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Persons inside ECs</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="effects-card">
+                            <h3>Persons Outside ECs</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>  <!--This is end of the 3rd container, "2nd Row"-->
+
+            <section class="3rd-Row third-row">
+                <section class="effects-infrastructure">
+                    <h2>IV. EFFECTS TO INFRASTRUCTURE</h2>
+                    <div class="infrastructure-stats">
+                        <div class="infrastructure-card">
+                            <h3>Roads Not Passable</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                        <div class="infrastructure-card">
+                            <h3>Bridges Not Passable</h3>
+                            <p class="effects-value">0</p>
+                        </div>
+                    </div>
                 </section>
-            </div>
-        </section>
+                <section class="seaports">
+                    <h2>V. Seaports</h2>
+                    <p>Seaport status details go here.</p>
+                </section>
+                <section class="dam-monitoring">
+                    <h2>VI. DAM MONITORING</h2>
+                    <p>Dam monitoring details go here.</p>
+                </section>
+                <section class="flights-cancelled">
+                    <h2>VII. Flights Cancelled</h2>
+                    <p>Flight cancellation details go here.</p>
+                </section>
+            </section>
+        </section>      <!--This is the end parent container of the Typhoon Dashboard-->
     </main>
 </body>
 </html>
