@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typhoon Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +24,7 @@
             <h1>Typhoon Dashboard</h1>
             <div class="sumarry-content">
                 <section class="panel-stack" aria-label="EOC and municipality status">
-                    <h2>ALERT STATUS</h2>
+                    <h2>I. ALERT STATUS</h2>
                     <article class="iloEOC">
                         <h2>Province of Iloilo EOC</h2>
                         <div class="figure">BLUE</div>
@@ -29,30 +32,42 @@
 
                     <article class="iloMun">
                         <h2>Municipalities</h2>
-                        <div class="figure">RED</div>
-                        <div class="figure">BLUE</div>
-                        <div class="figure">WHITE</div>
+                        <div class="figure red">RED</div>
+                        <div class="figure blue">BLUE</div>
+                        <div class="figure white">WHITE</div>
                     </article>
                 </section>
 
                 <section class="related-incidents">
-                    <h2>RELATED INCIDENTS</h2>
+                    <h2>II. RELATED INCIDENTS</h2>
                     <div class="incident-grid">
-                        <article class="incident-card">
-                            <h3>No. of Flooding Incidents</h3>
-                            <p class="value">24</p>
+                        <article class="incident-card incident-card--with-gif">
+                            <div class="incident-card-text">
+                                <h3>No. of Flooding Incidents</h3>
+                                <p class="value">24</p>
+                            </div>
+                            <img class="incident-card-gif" src="Images/relatedIncidents/floodIncidents.gif" alt="Flooding Incident GIF">
                         </article>
-                        <article class="incident-card">
-                            <h3>No. of Rain Induced Landslide</h3>
-                            <p class="value">7</p>
+                        <article class="incident-card incident-card--with-gif">
+                            <div class="incident-card-text">
+                                <h3>No. of Rain Induced Landslide</h3>
+                                <p class="value">7</p>
+                            </div>
+                            <img class="incident-card-gif" src="Images/relatedIncidents/landSlideIncidents.gif" alt="Landslide Incident GIF">
                         </article>
-                        <article class="incident-card">
-                            <h3>No. of LGUs with Reported Incidents</h3>
-                            <p class="value">12</p>
+                        <article class="incident-card incident-card--with-gif">
+                            <div class="incident-card-text">
+                                <h3>No. of LGUs with Reported Incidents</h3>
+                                <p class="value">12</p>
+                            </div>
+                            <img class="incident-card-gif" src="Images/relatedIncidents/lguIncidents.png" alt="LGU Incident Image">
                         </article>
-                        <article class="incident-card">
-                            <h3>No. of Brgys. with Reported Incidents</h3>
-                            <p class="value">38</p>
+                        <article class="incident-card incident-card--with-gif">
+                            <div class="incident-card-text">
+                                <h3>No. of Brgys. with Reported Incidents</h3>
+                                <p class="value">38</p>
+                            </div>
+                            <img class="incident-card-gif" src="Images/relatedIncidents/brgysIncidents.png" alt="Barangay Incident Image">
                         </article>
                     </div>
                 </section>
