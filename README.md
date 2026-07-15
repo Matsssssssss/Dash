@@ -14,3 +14,5 @@ What to do:
     {
         Write the script
     }
+
+    LASTLY, Optimize for mobile friendly interface
