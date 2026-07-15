@@ -15,6 +15,11 @@ h2 {
     font-family: 'Courier New', serif;
 }
 
+.whitespace {
+    font-size: 0.7rem;
+    color: transparent;
+}
+
 .top-nav {
     display: flex;
     justify-content: space-between;
@@ -43,7 +48,8 @@ h2 {
 }
 
 .dashboard {
-    padding: 6px;
+    padding: 8px;
+    background: #02143ae3;
 }
 
 .sumarry-reports {
@@ -106,7 +112,7 @@ h2 {
     margin-top: 20px;
     padding: 20px;
     border-radius: 12px;
-    background: rgba(255, 140, 0, 0.14);
+    background: rgba(255, 115, 0, 0.185);
     border: 1px solid rgba(255, 140, 0, 0.25);
     display: flex;
     gap: 20px;
@@ -123,8 +129,8 @@ h2 {
 .work-division {
     flex: 1 1 calc(50% - 10px);
     min-width: 280px;
-    background: rgba(255, 140, 0, 0.08);
-    border: 1px solid rgba(255, 140, 0, 0.18);
+    background: rgba(255, 241, 224, 0.788);
+    border: 1px solid rgba(199, 134, 55, 0.397);
     border-radius: 10px;
     padding: 16px;
 }
@@ -226,35 +232,162 @@ h2 {
 
 .fourth-row {
     display: flex;
-    gap: 20px;
+    gap: 13px;
     margin-top: 20px;
     align-items: stretch;
     flex-wrap: wrap;
 }
 
+.fourth-row > .power-interruption {
+    flex: 0 0 calc(40% - 10px);
+    min-width: 280px;
+}
+
+.fourth-row > .network-service,
+.fourth-row > .water-service {
+    flex: 0 0 calc(15% - 10px);
+    min-width: 180px;
+
+}
+
+.fourth-row > .effects-infrastructure {
+    flex: 0 0 calc(30% - 10px);
+    min-width: 220px;
+}
+
+.power-interruption-stats,
+.network-service-stats,
+.water-service-stats {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.power-interruption-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.network-service-stats,
+.water-service-stats {
+    grid-template-columns: 1fr;
+}
+
+.power-interruption-card,
+.network-service-card,
+.water-service-card {
+    background: #eef4ff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.power-interruption-card h3,
+.network-service-card h3,
+.water-service-card h3 {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.power-interruption-card .effects-value,
+.network-service-card .effects-value,
+.water-service-card .effects-value {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.fifth-row {
+    display: grid;
+    grid-template-columns: 55% 22.5% 22.5%;
+    margin-top: 20px;
+    align-items: start;
+}
+
+.fifth-row > .seaports,
+.fifth-row > .airport,
+.fifth-row > .dam-monitoring {
+    min-width: 0;
+    gap: 6px;
+}
+
+.seaport-stats,
+.airport-stats,
+.dam-monitoring-stats {
+    display: grid;
+    gap: 6px;
+    margin-top: 16px;
+    align-items: stretch;
+}
+
+.seaport-stats {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.airport-stats,
+.dam-monitoring-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.seaport-card,
+.airport-card,
+.dam-monitoring-cards {
+    background: #eef4ff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 6px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.seaport-card h3,
+.airport-card h3,
+.dam-monitoring-cards h3 {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.seaport-card .effects-value,
+.airport-card .effects-value,
+.dam-monitoring-cards .effects-value {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.power-interruption,
+.network-service,
+.water-service,
 .effects-infrastructure,
 .seaports,
 .dam-monitoring,
-.flights-cancelled {
+.airport {
     background: #fff;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     position: relative;
 }
 
-.flights-cancelled h2{
+.airport h2{
     margin-top: 0;
     padding: 0;
 }
 
 .effects-infrastructure {
-    flex: 0 0 calc(30% - 15px);
+    flex: 0 0 calc(30% - 10px);
     min-width: 220px;
 }
 .infrastructure-stats {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
     margin-top: 16px;
 }
@@ -263,34 +396,41 @@ h2 {
     background: #eef4ff;
     border: 1px solid #dbeafe;
     border-radius: 10px;
-    padding: 14px;
-    text-align: center;
+    padding: 20px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
 }
 
 .infrastructure-card h3 {
-    margin: 0 0 10px;
     font-size: 0.95rem;
 }
 
 .infrastructure-card .effects-value {
-    margin: 0;
     font-size: 1.6rem;
+    margin-left: 30px;
 }
 .seaports {
-    flex: 0 0 calc(40% - 15px);
+    flex: 0 0 calc(50% - 15px);
     min-width: 220px;
 }
 
 .dam-monitoring {
-    flex: 0 0 calc(15% - 15px);
+    flex: 0 0 calc(25% - 15px);
     min-width: 180px;
 }
 
-.flights-cancelled {
-    flex: 0 0 calc(15% - 15px);
+.airport {
+    flex: 0 0 calc(25% - 15px);
     min-width: 180px;
 }
 
+.power-interruption h2,
+.network-service h2,
+.water-service h2,
 .effects-infrastructure h2,
 .seaports h2,
 .dam-monitoring h2 {
@@ -495,16 +635,33 @@ h2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .fourth-row {
-        flex-direction: column;
+    .fifth-row {
+        grid-template-columns: 1fr;
     }
 
-    .effects-infrastructure,
-    .seaports,
-    .dam-monitoring {
+    .fifth-row > .seaports,
+    .fifth-row > .airport,
+    .fifth-row > .dam-monitoring {
         width: 100%;
         max-width: 100%;
-        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .seaport-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .airport-stats,
+    .dam-monitoring-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .power-interruption,
+    .network-service,
+    .water-service,
+    .effects-infrastructure {
+        width: 100%;
+        max-width: 100%;
     }
 }
 
