@@ -54,21 +54,13 @@ h2 {
 }
 
 .sumarry-reports {
+    background-color:rgba(187, 211, 255, 0.9);
     padding-top: 0;
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-
-
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.600), rgba(255, 255, 255, 0.600)),
-        url("Images/parentBackground/waterDrops.gif");
-    
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .sumarry-reports h1 {
@@ -83,9 +75,9 @@ h2 {
     width: 100%;
     margin-top: 20px;
     padding: 20px;
-    background: #eef4ff;
+    background: #bcd5dbbd;
+    border: 1px solid #3f808f88;
     border-radius: 12px;
-    border: 1px solid #dbeafe;
 }
 
 .effects-population h2 {
@@ -95,9 +87,16 @@ h2 {
 }
 
 .effects-content {
-    background: rgba(255, 255, 255, .85);
     border-radius: 10px;
     padding: 16px;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.450), #ffffff73),
+        url("Images/parentBackground/rainDrops.gif");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .effects-grid {
@@ -107,7 +106,7 @@ h2 {
 }
 
 .effects-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.900);
     border: 1px solid #e2e8f0;
     border-radius: 10px;
     padding: 16px;
@@ -126,8 +125,8 @@ h2 {
     margin-top: 20px;
     padding: 20px;
     border-radius: 12px;
-    background: rgba(255, 115, 0, 0.185);
-    border: 1px solid rgba(255, 140, 0, 0.25);
+    background: rgba(255, 187, 132, 0.9);
+    border: 1px solid rgba(255, 72, 0, 0.50);
     display: flex;
     gap: 20px;
     align-items: stretch;
@@ -143,14 +142,15 @@ h2 {
     flex: 1 1 calc(50% - 10px);
     min-width: 280px;
     background: rgba(255, 241, 224, 0.788);
-    border: 1px solid rgba(199, 134, 55, 0.397);
+    border: 2px solid rgba(126, 73, 10, 0.459);
     border-radius: 10px;
     padding: 16px;
+    margin-top: -15px;
 
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.530), rgba(0, 0, 0, 0.530)),
         url("Images/suspension/classSuspension.jpg");
-    
+
     opacity: 85%;
     background-size: cover;
     background-position: center;
@@ -165,9 +165,10 @@ h2 {
     border: 1px solid rgba(199, 134, 55, 0.397);
     border-radius: 10px;
     padding: 16px;
+    margin-top: -15px;
 
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.530), rgba(0, 0, 0, 0.530)),
+        linear-gradient(rgba(0, 0, 0, 0.53), rgba(0, 0, 0, 0.530)),
         url("Images/suspension/workSuspension.jpeg");
     
     opacity: 85%;
@@ -236,7 +237,7 @@ h2 {
 .work-suspension-card,
 .school-levels-card,
 .work-levels-card {
-    background: rgba(255, 255, 255, 0.500);
+    background: rgba(255, 255, 255, 0.800);
     border: 1px solid rgba(255, 140, 0, 0.2);
     border-radius: 10px;
     padding: 12px;
@@ -349,25 +350,26 @@ h2 {
 
 .fifth-row {
     display: grid;
-    grid-template-columns: 55% 22.5% 22.5%;
+    grid-template-columns: 54.4% 22.5% 22.5%;
     margin-top: 20px;
-    align-items: start;
+    align-items: center;
+    gap: 4px;
 }
 
 .fifth-row > .seaports,
 .fifth-row > .airport,
 .fifth-row > .dam-monitoring {
     min-width: 0;
-    gap: 6px;
+    min-height: 0px;
 }
 
 .seaport-stats,
 .airport-stats,
 .dam-monitoring-stats {
     display: grid;
-    gap: 6px;
     margin-top: 16px;
-    align-items: stretch;
+    align-items: center;
+    gap: 6px;
 }
 
 .seaport-stats {
@@ -380,9 +382,34 @@ h2 {
 }
 
 .seaport-card,
-.airport-card,
-.dam-monitoring-cards {
+.airport-card {
     background: #eef4ff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.dam-monitoring-normal-cards {
+    background: #1cbe44;
+    border: 1px solid #dbfee1;
+    border-radius: 10px;
+    padding: 6px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.dam-monitoring-warning-cards {
+    background: #cf312c;
     border: 1px solid #dbeafe;
     border-radius: 10px;
     padding: 6px;
@@ -396,21 +423,22 @@ h2 {
 
 .seaport-card h3,
 .airport-card h3,
-.dam-monitoring-cards h3 {
+.dam-monitoring-normal-cards h3,
+.dam-monitoring-warning-cards h3 {
     margin: 0;
     font-size: 0.95rem;
 }
 
 .seaport-card .effects-value,
 .airport-card .effects-value,
-.dam-monitoring-cards .effects-value {
+.dam-monitoring-normal-cards .effects-value,
+.dam-monitoring-warning-cards .effects-value {
     margin: 0;
     font-size: 1.4rem;
 }
 
 .power-interruption,
 .network-service,
-.water-service,
 .seaports,
 .dam-monitoring,
 .airport {
@@ -421,9 +449,17 @@ h2 {
     position: relative;
 }
 
+.water-service {
+    background: #ef76ff6e;
+    border: 1px solid #e66cff;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+
 .effects-infrastructure {
-    background: #2564eb34;
-    border: 1px solid #e2e8f0;
+    background: hsla(224, 100%, 78%, 0.9);
+    border: 1px solid #4c99ff;
     border-radius: 10px;
     padding: 5px;
     position: relative;
@@ -431,7 +467,7 @@ h2 {
 
 .airport h2{
     margin-top: 0;
-    padding: 0;
+    padding: 8px;
 }
 
 .effects-infrastructure {
@@ -443,6 +479,7 @@ h2 {
     grid-template-columns: 1fr;
     gap: 5px;
     margin-top: 16px;
+    min-width: 0px;
 }
 
 .infrastructure-road-card {
@@ -559,6 +596,7 @@ h2 {
 .dam-monitoring h2 {
     margin-top: 0;
     font-family: 'Courier New', serif;
+    padding: 8px;
 }
 
 .effects-card h3 {
@@ -594,6 +632,7 @@ h2 {
     max-width: calc(35% - 10px);
     min-height: 0;
     background: #eef4ff;
+    border: 1px solid #3c3d3dcb;
     padding: 16px;
     border-radius: 10px;
     align-self: stretch;
@@ -706,6 +745,7 @@ h2 {
     width: calc(65% - 10px);
     max-width: calc(65% - 10px);
     background: #fff7ed;
+    border: 1px solid #ad8a61;
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -768,6 +808,7 @@ h2 {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+        min-height: 0px;
     }
 
     .seaport-stats {
