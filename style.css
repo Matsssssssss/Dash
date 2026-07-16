@@ -49,20 +49,34 @@ h2 {
 
 .dashboard {
     padding: 8px;
+    padding-top: 0px;
     background: #02143ae3;
 }
 
 .sumarry-reports {
-    background: white;
+    padding-top: 0;
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.600), rgba(255, 255, 255, 0.600)),
+        url("Images/parentBackground/waterDrops.gif");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .sumarry-reports h1 {
     margin-top: 0;
     margin-bottom: 16px;
     color: #b91c1c;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .effects-population {
@@ -125,7 +139,25 @@ h2 {
     margin: 0 0 8px;
 }
 
-.class-division,
+.class-division {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 280px;
+    background: rgba(255, 241, 224, 0.788);
+    border: 1px solid rgba(199, 134, 55, 0.397);
+    border-radius: 10px;
+    padding: 16px;
+
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.530), rgba(0, 0, 0, 0.530)),
+        url("Images/suspension/classSuspension.jpg");
+    
+    opacity: 85%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+}
+
 .work-division {
     flex: 1 1 calc(50% - 10px);
     min-width: 280px;
@@ -133,13 +165,27 @@ h2 {
     border: 1px solid rgba(199, 134, 55, 0.397);
     border-radius: 10px;
     padding: 16px;
+
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.530), rgba(0, 0, 0, 0.530)),
+        url("Images/suspension/workSuspension.jpeg");
+    
+    opacity: 85%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
 }
 
 .class-suspension h2,
 .work-suspension h2 {
     margin-top: 0;
     margin-bottom: 8px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
+    font-size: 2rem;
+    color: #e2e8f0;
+    font-weight: 1200;
 }
 
 .class-suspension h3,
@@ -190,7 +236,7 @@ h2 {
 .work-suspension-card,
 .school-levels-card,
 .work-levels-card {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.500);
     border: 1px solid rgba(255, 140, 0, 0.2);
     border-radius: 10px;
     padding: 12px;
@@ -426,6 +472,7 @@ h2 {
     font-size: 1rem;
     color: #e2e8f0;
     font-weight: 900;
+    padding-right: 20px;
 }
 
 .infrastructure-road-card .effects-value {
@@ -461,6 +508,8 @@ h2 {
     font-size: 1rem;
     color: #e2e8f0;
     font-weight: 900;
+    padding-right: 10px;
+    padding-left: -10px;
 }
 
 .infrastructure-bridge-card .effects-value {
