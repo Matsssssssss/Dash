@@ -365,11 +365,18 @@ h2 {
 .power-interruption,
 .network-service,
 .water-service,
-.effects-infrastructure,
 .seaports,
 .dam-monitoring,
 .airport {
     background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+
+.effects-infrastructure {
+    background: #2564eb34;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
     padding: 5px;
@@ -388,11 +395,11 @@ h2 {
 .infrastructure-stats {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 5px;
     margin-top: 16px;
 }
 
-.infrastructure-card {
+.infrastructure-road-card {
     background: #eef4ff;
     border: 1px solid #dbeafe;
     border-radius: 10px;
@@ -403,16 +410,83 @@ h2 {
     justify-content: space-between;
     align-items: center;
     gap: 6px;
+
+    background-image:
+    linear-gradient(rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.603)),
+    url("Images/effectsToInfra/impassableRoadBG.png");
+    
+    opacity: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;    
 }
 
-.infrastructure-card h3 {
-    font-size: 0.95rem;
+.infrastructure-road-card h3 {
+    font-size: 1rem;
+    color: #e2e8f0;
+    font-weight: 900;
 }
 
-.infrastructure-card .effects-value {
-    font-size: 1.6rem;
-    margin-left: 30px;
+.infrastructure-road-card .effects-value {
+    font-size: 3rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 2px;
 }
+
+.infrastructure-bridge-card {
+    background: #eef4ff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+
+    background-image:
+    linear-gradient(rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.603)),
+    url("Images/effectsToInfra/impassableBridgeBG.jpg");
+
+    opacity: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.infrastructure-bridge-card h3 {
+    font-size: 1rem;
+    color: #e2e8f0;
+    font-weight: 900;
+}
+
+.infrastructure-bridge-card .effects-value {
+    font-size: 3rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 2px;
+}
+
+.infrastructure-figure-card {
+    background: #ffffff93;
+    border: 1px solid #69aaff75;
+    border-radius: 10px;
+    padding: 6px;
+    min-height: 50px;
+    align-items: center;
+    gap: 6px;
+    margin-top: -20px;
+    margin-left: -10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: -20px;
+}
+
 .seaports {
     flex: 0 0 calc(50% - 15px);
     min-width: 220px;
