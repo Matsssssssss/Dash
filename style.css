@@ -7,8 +7,10 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #1f2937;
+    background: #ffffff;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
 }
 
 h2 {
@@ -50,17 +52,25 @@ h2 {
 .dashboard {
     padding: 8px;
     padding-top: 0px;
-    background: #02143ae3;
+    background: #1a2b52d7;
 }
 
 .sumarry-reports {
-    background-color:rgba(187, 211, 255, 0.9);
+    background-color:rgba(247, 250, 255, 0.808);
     padding-top: 0;
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+
+    background-image:
+        linear-gradient(rgba(247, 250, 255, 0.950), #ffffff73),
+        url("Images/parentBackground/waterDrops.gif");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .sumarry-reports h1 {
@@ -75,7 +85,7 @@ h2 {
     width: 100%;
     margin-top: 20px;
     padding: 20px;
-    background: #bcd5dbbd;
+    background: #7b90b663;
     border: 1px solid #3f808f88;
     border-radius: 12px;
 }
@@ -125,7 +135,7 @@ h2 {
     margin-top: 20px;
     padding: 20px;
     border-radius: 12px;
-    background: rgba(255, 187, 132, 0.9);
+    background: rgba(255, 202, 159, 0.9);
     border: 1px solid rgba(255, 72, 0, 0.50);
     display: flex;
     gap: 20px;
@@ -142,40 +152,44 @@ h2 {
     flex: 1 1 calc(50% - 10px);
     min-width: 280px;
     background: rgba(255, 241, 224, 0.788);
-    border: 2px solid rgba(126, 73, 10, 0.459);
     border-radius: 10px;
     padding: 16px;
     margin-top: -15px;
 
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.530), rgba(0, 0, 0, 0.530)),
+        linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
         url("Images/suspension/classSuspension.jpg");
 
-    opacity: 85%;
+    opacity: 90%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
+    border: 3px solid rgba(199, 134, 55, 1);
 }
 
 .work-division {
     flex: 1 1 calc(50% - 10px);
     min-width: 280px;
-    background: rgba(255, 241, 224, 0.788);
-    border: 1px solid rgba(199, 134, 55, 0.397);
     border-radius: 10px;
     padding: 16px;
     margin-top: -15px;
 
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.53), rgba(0, 0, 0, 0.530)),
+        linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
         url("Images/suspension/workSuspension.jpeg");
     
-    opacity: 85%;
+    opacity: 90%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
+    border: 3px solid rgba(199, 134, 55, 1);
+}
+
+.work-division > * {
+    position: relative;
+    z-index: 1;
 }
 
 .class-suspension h2,
@@ -237,6 +251,7 @@ h2 {
 .work-suspension-card,
 .school-levels-card,
 .work-levels-card {
+
     background: rgba(255, 255, 255, 0.800);
     border: 1px solid rgba(255, 140, 0, 0.2);
     border-radius: 10px;
@@ -286,19 +301,19 @@ h2 {
 }
 
 .fourth-row > .power-interruption {
-    flex: 0 0 calc(40% - 10px);
+    flex: 0 0 calc(35% - 10px);
     min-width: 280px;
 }
 
 .fourth-row > .network-service,
 .fourth-row > .water-service {
-    flex: 0 0 calc(15% - 10px);
+    flex: 0 0 calc(19% - 10px);
     min-width: 180px;
 
 }
 
 .fourth-row > .effects-infrastructure {
-    flex: 0 0 calc(30% - 10px);
+    flex: 0 0 calc(27% - 10px);
     min-width: 220px;
 }
 
@@ -308,6 +323,7 @@ h2 {
     display: grid;
     gap: 10px;
     margin-top: 16px;
+    position: relative;
 }
 
 .power-interruption-stats {
@@ -320,7 +336,6 @@ h2 {
 }
 
 .power-interruption-card,
-.network-service-card,
 .water-service-card {
     background: #eef4ff;
     border: 1px solid #dbeafe;
@@ -332,6 +347,20 @@ h2 {
     flex-direction: column;
     justify-content: center;
     gap: 6px;
+}
+
+.network-service-card {
+    background: #fdffee;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 0px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    position: relative;
 }
 
 .power-interruption-card h3,
@@ -348,12 +377,13 @@ h2 {
     font-size: 1.4rem;
 }
 
+/*THIS IS THE ROW's CONTAINER ALIGNED*/
 .fifth-row {
     display: grid;
     grid-template-columns: 54.4% 22.5% 22.5%;
-    margin-top: 20px;
+    margin-top: 10px;
     align-items: center;
-    gap: 4px;
+    gap: 12px;
 }
 
 .fifth-row > .seaports,
@@ -381,7 +411,18 @@ h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.seaport-card,
+.seaport-card {
+    background: #eef4ff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
 .airport-card {
     background: #eef4ff;
     border: 1px solid #dbeafe;
@@ -399,26 +440,27 @@ h2 {
     background: #1cbe44;
     border: 1px solid #dbfee1;
     border-radius: 10px;
-    padding: 6px;
+    min-height: 0px;
+    padding: 16px;
     text-align: center;
-    min-height: 90px;
+    max-height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6px;
+    gap: 12px;
 }
 
 .dam-monitoring-warning-cards {
     background: #cf312c;
     border: 1px solid #dbeafe;
     border-radius: 10px;
-    padding: 6px;
+    min-height: 0px;
+    padding: 16px;
     text-align: center;
-    min-height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6px;
+    gap: 12px;
 }
 
 .seaport-card h3,
@@ -437,20 +479,48 @@ h2 {
     font-size: 1.4rem;
 }
 
-.power-interruption,
-.network-service,
-.seaports,
-.dam-monitoring,
+.seaports {
+    background: #d1bf8b;
+    border: 1px solid #a3872b;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+
 .airport {
-    background: #fff;
-    border: 1px solid #e2e8f0;
+    background: #97efff;
+    border: 1px solid #49badd;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+
+.dam-monitoring {
+    background: #86e28e;
+    border: 1px solid #4ca740;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+
+.power-interruption {
+    background: #ff8e8e;
+    border: 1px solid #a7504a;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+
+.network-service {
+    background: #f4ff93;
+    border: 1px solid #cbda01;
     border-radius: 10px;
     padding: 5px;
     position: relative;
 }
 
 .water-service {
-    background: #ef76ff6e;
+    background: #f4a4ff86;
     border: 1px solid #e66cff;
     border-radius: 10px;
     padding: 5px;
@@ -458,8 +528,8 @@ h2 {
 }
 
 .effects-infrastructure {
-    background: hsla(224, 100%, 78%, 0.9);
-    border: 1px solid #4c99ff;
+    background: rgba(142, 149, 169, 0.9);
+    border: 1px solid #404449;
     border-radius: 10px;
     padding: 5px;
     position: relative;
@@ -471,13 +541,13 @@ h2 {
 }
 
 .effects-infrastructure {
-    flex: 0 0 calc(30% - 10px);
+    flex: 0 0 calc(20% - 10px);
     min-width: 220px;
 }
 .infrastructure-stats {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 5px;
+    gap: 8px;
     margin-top: 16px;
     min-width: 0px;
 }
@@ -495,28 +565,40 @@ h2 {
     gap: 6px;
 
     background-image:
-    linear-gradient(rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.603)),
+    linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
     url("Images/effectsToInfra/impassableRoadBG.png");
     
     opacity: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 10px;    
+    border-radius: 10px;
+    margin-left: 2px; 
+    min-width: 0px;
 }
 
 .infrastructure-road-card h3 {
-    font-size: 1rem;
-    color: #e2e8f0;
-    font-weight: 900;
-    padding-right: 20px;
+    font-size: 1.5rem;
+    color: #000000;
+    text-align: center;
+    justify-content: center;
+    padding: 16px;
+    margin-right: 2.5%;
+    padding-right: 37px;
+    margin-left: 2.5%;
+    margin-top: -20px;
+    margin-bottom: -20px;
 }
 
 .infrastructure-road-card .effects-value {
     font-size: 3rem;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 2px;
+    padding-top: -30px;
+    padding-bottom: -30px;
+    margin-top: 1px;
+    margin-right: 50%;
+    margin-left: 50%;
 }
 
 .infrastructure-bridge-card {
@@ -532,47 +614,57 @@ h2 {
     gap: 6px;
 
     background-image:
-    linear-gradient(rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.603)),
+    linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
     url("Images/effectsToInfra/impassableBridgeBG.jpg");
 
     opacity: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    margin-left: 2px; 
+    min-width: 0;
 }
 
 .infrastructure-bridge-card h3 {
-    font-size: 1rem;
-    color: #e2e8f0;
-    font-weight: 900;
-    padding-right: 10px;
-    padding-left: -10px;
+    font-size: 1.5rem;
+    color: #000000;
+    text-align: center;
+    padding: 16px;
+    margin-right: 2.5%;
+    padding-right: 16px;
+    margin-left: 2.5%;
+    margin-top: -20px;
+    margin-bottom: -20px;
 }
 
 .infrastructure-bridge-card .effects-value {
     font-size: 3rem;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top: 2px;
+    padding-top: -30px;
+    padding-bottom: -30px;
+    margin-top: 1px;
+    margin-right: 50%;
+    margin-left: 50%;
 }
 
 .infrastructure-figure-card {
-    background: #ffffff93;
-    border: 1px solid #69aaff75;
+    background: rgba(166, 181, 216, 0.7);
+    border: 1px solid #69aaff;
     border-radius: 10px;
-    padding: 6px;
+    padding: 16px;
     min-height: 50px;
     align-items: center;
-    gap: 6px;
+    gap: 100px;
     margin-top: -20px;
     margin-left: -10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 80px;
     margin-bottom: -20px;
 }
-
+/*
 .seaports {
     flex: 0 0 calc(50% - 15px);
     min-width: 220px;
@@ -587,7 +679,7 @@ h2 {
     flex: 0 0 calc(25% - 15px);
     min-width: 180px;
 }
-
+*/
 .power-interruption h2,
 .network-service h2,
 .water-service h2,
@@ -640,7 +732,7 @@ h2 {
 
 .iloEOC,
 .iloMun,
-.related-incidents,
+.elated-incidents,
 .incident-card {
     background: rgba(255, 255, 255, .75);
     border: 1px solid #e2e8f0;
@@ -744,12 +836,14 @@ h2 {
     flex: 0 0 calc(65% - 10px);
     width: calc(65% - 10px);
     max-width: calc(65% - 10px);
-    background: #fff7ed;
+    background: #facee8;
     border: 1px solid #ad8a61;
     display: flex;
     flex-direction: column;
     min-height: 0;
     align-self: stretch;
+    padding: 16px;
+    border-radius: 10px;
 }
 
 .incident-grid {
