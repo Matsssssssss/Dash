@@ -58,14 +58,14 @@ h2 {
 .sumarry-reports {
     background-color:rgba(247, 250, 255, 0.808);
     padding-top: 0;
-    padding: 24px;
+    padding: 16px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 
     background-image:
-        linear-gradient(rgba(247, 250, 255, 0.950), #ffffff73),
+        linear-gradient(rgba(207, 216, 233, 0.875), rgba(247, 250, 255, 0.875)),
         url("Images/parentBackground/waterDrops.gif");
     
     background-size: cover;
@@ -79,6 +79,37 @@ h2 {
     color: #b91c1c;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.sumarry-content {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.panel-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 0 0 calc(40% - 10px);
+    width: calc(40% - 10px);
+    min-width: 220px;
+    max-width: calc(40% - 10px);
+    min-height: 0;
+    background: #eef4ff;
+    border: 1px solid #3c3d3dcb;
+    padding: 12px;
+    border-radius: 10px;
+    align-self: stretch;
+}
+
+.iloEOC,
+.iloMun  {
+    background: rgba(255, 255, 255, .75);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 6px;
 }
 
 .effects-population {
@@ -116,11 +147,11 @@ h2 {
 }
 
 .effects-card {
-    background: rgba(255, 255, 255, 0.900);
+    background: rgba(255, 255, 255, 0.800);
     border: 1px solid #e2e8f0;
     border-radius: 10px;
-    padding: 16px;
-    min-height: 110px;
+    padding: 8px;
+    min-height: 90px;
     min-width: 0;
     display: grid;
     grid-template-columns: 35% 65%;
@@ -131,9 +162,27 @@ h2 {
     position: relative;
 }
 
+.effects-card .effects-value {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.effects-card .incident-card-gif {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 100%;
+    min-width: 60px;
+    max-width: 150px;
+    justify-self: center;
+    align-self: center;
+}
+
 .third-row {
     margin-top: 20px;
-    padding: 20px;
+    padding: 5px;
     border-radius: 12px;
     background: rgba(255, 202, 159, 0.9);
     border: 1px solid rgba(255, 72, 0, 0.50);
@@ -150,7 +199,7 @@ h2 {
 
 .class-division {
     flex: 1 1 calc(50% - 10px);
-    min-width: 280px;
+    min-width: 250px;
     background: rgba(255, 241, 224, 0.788);
     border-radius: 10px;
     padding: 16px;
@@ -160,7 +209,7 @@ h2 {
         linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
         url("Images/suspension/classSuspension.jpg");
 
-    opacity: 90%;
+    opacity: .9;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -170,7 +219,7 @@ h2 {
 
 .work-division {
     flex: 1 1 calc(50% - 10px);
-    min-width: 280px;
+    min-width: 250px;
     border-radius: 10px;
     padding: 16px;
     margin-top: -15px;
@@ -179,7 +228,7 @@ h2 {
         linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
         url("Images/suspension/workSuspension.jpeg");
     
-    opacity: 90%;
+    opacity: .9;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -208,6 +257,10 @@ h2 {
     margin-top: 0;
     margin-bottom: 8px;
     text-align: center;
+    min-height: 0px;
+    min-width: 0px;
+    text-wrap: balance;
+    overflow: hidden;
 }
 
 .class-suspension,
@@ -268,6 +321,9 @@ h2 {
 .school-levels-card h3,
 .work-levels-card h3 {
     margin: 0;
+    text-wrap: balance;
+    overflow: hidden;
+    font-size: clamp(0.001rem, 0.8rem, 1.25rem);
 }
 
 .class-suspension-card .effects-value,
@@ -301,19 +357,23 @@ h2 {
 }
 
 .fourth-row > .power-interruption {
-    flex: 0 0 calc(35% - 10px);
+    flex: 0 0 calc(30% - 10px);
     min-width: 280px;
 }
 
-.fourth-row > .network-service,
+.fourth-row > .network-service {
+    flex: 0 0 calc(20% - 10px);
+    min-width: 180px;
+}
+
 .fourth-row > .water-service {
-    flex: 0 0 calc(19% - 10px);
+    flex: 0 0 calc(20% - 10px);
     min-width: 180px;
 
 }
 
 .fourth-row > .effects-infrastructure {
-    flex: 0 0 calc(27% - 10px);
+    flex: 0 0 calc(30% - 10px);
     min-width: 220px;
 }
 
@@ -427,7 +487,7 @@ h2 {
     background: #eef4ff;
     border: 1px solid #dbeafe;
     border-radius: 10px;
-    padding: 10px;
+    padding: 8px;
     text-align: center;
     min-height: 90px;
     display: flex;
@@ -440,10 +500,9 @@ h2 {
     background: #1cbe44;
     border: 1px solid #dbfee1;
     border-radius: 10px;
-    min-height: 0px;
+    min-height: 90px;
     padding: 16px;
     text-align: center;
-    max-height: 90px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -454,7 +513,7 @@ h2 {
     background: #cf312c;
     border: 1px solid #dbeafe;
     border-radius: 10px;
-    min-height: 0px;
+    min-height: 90px;
     padding: 16px;
     text-align: center;
     display: flex;
@@ -501,6 +560,7 @@ h2 {
     border-radius: 10px;
     padding: 5px;
     position: relative;
+    margin-bottom: 0;
 }
 
 .power-interruption {
@@ -578,14 +638,16 @@ h2 {
 }
 
 .infrastructure-road-card h3 {
-    font-size: 1.5rem;
+    flex: 1;
+    min-width: 0;
+    font-size: 1.4rem;
     color: #000000;
     text-align: center;
     justify-content: center;
     padding: 16px;
-    margin-right: 2.5%;
+    margin-right: 0%;
     padding-right: 37px;
-    margin-left: 2.5%;
+    margin-left: 0%;
     margin-top: -20px;
     margin-bottom: -20px;
 }
@@ -597,8 +659,8 @@ h2 {
     padding-top: -30px;
     padding-bottom: -30px;
     margin-top: 1px;
-    margin-right: 50%;
-    margin-left: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
 }
 
 .infrastructure-bridge-card {
@@ -644,8 +706,8 @@ h2 {
     padding-top: -30px;
     padding-bottom: -30px;
     margin-top: 1px;
-    margin-right: 50%;
-    margin-left: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
 }
 
 .infrastructure-figure-card {
@@ -661,7 +723,7 @@ h2 {
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 0px;
-    padding-right: 80px;
+    padding-right: 40px;
     margin-bottom: -20px;
 }
 /*
@@ -692,11 +754,25 @@ h2 {
 }
 
 .effects-card h3 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+}
+
+.effects-card h3 {
+    display: flex;
     margin: 0 0 12px;
-    font-size: 1rem;
     line-height: 1.3;
     color: #1f2937;
     text-align: center;
+    font-size: clamp(0.50rem, 1rem, 1.25rem);
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+    overflow: hidden;
 }
 
 .effects-value {
@@ -707,37 +783,11 @@ h2 {
     text-align: center;
 }
 
-.sumarry-content {
-    display: flex;
-    gap: 20px;
-    align-items: stretch;
-    align-content: stretch;
-}
-
-.panel-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 0 0 calc(35% - 10px);
-    width: calc(35% - 10px);
-    min-width: 220px;
-    max-width: calc(35% - 10px);
-    min-height: 0;
-    background: #eef4ff;
-    border: 1px solid #3c3d3dcb;
-    padding: 16px;
-    border-radius: 10px;
-    align-self: stretch;
-}
-
-.iloEOC,
-.iloMun,
-.elated-incidents,
-.incident-card {
+.related-incidents {
     background: rgba(255, 255, 255, .75);
     border: 1px solid #e2e8f0;
     border-radius: 10px;
-    padding: 16px;
+    padding: 12px;
 }
 
 .iloMun {
@@ -746,7 +796,7 @@ h2 {
 
 .iloEOC {
     background: rgba(4, 73, 235, 0.10);
-    padding: 24px 16px;
+    padding: 8px;
 }
 
 .iloEOC,
@@ -755,13 +805,13 @@ h2 {
 }
 
 .panel-stack h2 {
-    margin: 0 0 8px;
-    padding: 0;
+    margin: 2px 0 2px;
+    padding: 2px 0 0 8px;
 }
 
 .iloEOC h2,
 .iloMun h2 {
-    margin: 0 0 10px;
+    margin: 0 0 0px;
     padding: 0;
 }
 
@@ -778,7 +828,7 @@ h2 {
     margin-top: 0;
     padding-top: 10px;
     margin-bottom: 2px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
 
 .iloMun .figure {
@@ -833,9 +883,9 @@ h2 {
 }
 
 .related-incidents {
-    flex: 0 0 calc(65% - 10px);
-    width: calc(65% - 10px);
-    max-width: calc(65% - 10px);
+    flex: 0 0 calc(60% - 10px);
+    width: calc(60% - 10px);
+    max-width: calc(60% - 10px);
     background: #facee8;
     border: 1px solid #ad8a61;
     display: flex;
@@ -846,6 +896,11 @@ h2 {
     border-radius: 10px;
 }
 
+.related-incidents h2 {
+    margin: 0 0 10px;
+    padding: 0 0 0 8px;
+}
+
 .incident-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -853,20 +908,44 @@ h2 {
 }
 
 .incident-card {
-    background: white;
-    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, .900);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px;
+    min-height: 0px;
+    min-width: 0px;
+    max-height: 260px;;
+    overflow: hidden;
 }
 
 .incident-card--with-gif {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 15px;
-    gap: 12px;
+    margin-top: 4px;
+    gap: 2px;
+    min-height: 0px;
+    min-width: 0px;
 }
 
 .incident-card-text {
     flex: 1 1 auto;
+    min-width: 0;
+}
+
+.incident-card-text h3 {
+    font-size: clamp(0.5rem, 0.80, 1.25rem);
+    line-height: 1.3;
+    font-weight: 650;
+    margin: 0;
+    
+    font-family: 'Montserrat', sans-serif;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    overflow: hidden;
 }
 
 .incident-card-gif {
@@ -875,6 +954,10 @@ h2 {
     height: auto;
     display: block;
     object-fit: contain;
+    min-height: 0px;
+    min-width: 0px;
+    padding: 4px;
+    overflow: hidden;
 }
 
 @media (max-width: 700px) {
@@ -926,6 +1009,7 @@ h2 {
 @media (max-width: 900px) {
     .sumarry-content {
         flex-direction: column;
+        padding: 4px;
     }
 
     .panel-stack,
@@ -935,35 +1019,32 @@ h2 {
         flex: 1 1 auto;
     }
 
+    .fourth-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 700px) {
     .incident-grid {
         grid-template-columns: 1fr;
     }
-}
 
+    .sumarry-content {
+        flex-direction: column;
+        width: 100%;
+    }
 
-.effects-card h3 {
-    grid-column: 2;
-    grid-row: 1;
-    margin: 0;
-}
+    .fourth-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
 
-.effects-card .effects-value {
-    grid-column: 2;
-    grid-row: 2;
-    margin: 0;
-    font-size: 2rem;
-    text-align: center;
-}
-
-.effects-card .incident-card-gif {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    width: 100%;
-    min-width: 60px;
-    max-width: 150px;
-    justify-self: center;
-    align-self: center;
+    .power-interruption,
+    .network-service,
+    .water-service,
+    .effects-infrastructure {
+        width: min(100%, 400px);
+    }
 }
