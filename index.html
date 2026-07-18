@@ -38,9 +38,9 @@
 
                     <article class="iloMun">
                         <h2>Municipalities</h2>
-                        <div id="red_alert" class="figure red">RED</div>
-                        <div id="blue_alert" class="figure blue">BLUE</div>
-                        <div id="white_alert" class="figure white">WHITE</div>
+                        <div id="red_Alert" class="figure red">RED</div>
+                        <div id="blue_Alert" class="figure blue">BLUE</div>
+                        <div id="white_Alert" class="figure white">WHITE</div>
                     </article>
                 </section>  <!--End of the 1st container "1st Row, 1st Column"-->
 
@@ -51,28 +51,28 @@
                         <article class="incident-card incident-card--with-gif">
                             <div class="incident-card-text">
                                 <h3>No. of Flooding Incidents</h3>
-                                <p class="value">24</p>
+                                <p id="flood_Incident" class="value">0</p>
                             </div>
                             <img class="incident-card-gif" src="Images/relatedIncidents/floodIncidents.gif" alt="Flooding Incident GIF">
                         </article>
                         <article class="incident-card incident-card--with-gif">
                             <div class="incident-card-text">
                                 <h3>No. of Rain Induced Landslide</h3>
-                                <p class="value">7</p>
+                                <p id="rain_Induced_Landslide" class="value">0</p>
                             </div>
                             <img class="incident-card-gif" src="Images/relatedIncidents/landSlideIncidents.gif" alt="Landslide Incident GIF">
                         </article>
                         <article class="incident-card incident-card--with-gif">
                             <div class="incident-card-text">
                                 <h3>No. of LGUs with Reported Incidents</h3>
-                                <p class="value">12</p>
+                                <p id="mun_AffectedbyIncident_Total" class="value">0</p>
                             </div>
                             <img class="incident-card-gif" src="Images/relatedIncidents/lguIncidents.png" alt="LGU Incident Image">
                         </article>
                         <article class="incident-card incident-card--with-gif">
                             <div class="incident-card-text">
                                 <h3>No. of Brgys. with Reported Incidents</h3>
-                                <p class="value">38</p>
+                                <p id="brgys_AffectedbyIncident_Total" class="value">0</p>
                             </div>
                             <img class="incident-card-gif" src="Images/relatedIncidents/brgysIncidents.png" alt="Barangay Incident Image">
                         </article>
@@ -88,52 +88,52 @@
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/casualties.png" alt="Casualties Image">
                             <h3>No. of Casualty</h3>
-                            <p class="effects-value">0</p>
+                            <p id="casualty" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/municipalitiesAffected.png" alt="Municipalities Affected">
                             <h3>Municipalities Affected</h3>
-                            <p class="effects-value">0</p>
+                            <p id="mun_Affected" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/brgysAffected.png" alt="Barangays Affected">
                             <h3>Brgys Affected</h3>
-                            <p class="effects-value">0</p>
+                            <p id="brgy_Affected" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/familiesAffected.png" alt="Families Affected">
                             <h3>Families Affected</h3>
-                            <p class="effects-value">0</p>
+                            <p id="family_Affected" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/personsAffected.png" alt="Persons Affected">
                             <h3>Persons Affected</h3>
-                            <p class="effects-value">0</p>
+                            <p id="persons_Affected" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/partiallyDamagedHouses.png" alt="Partially Damaged Houses">
                             <h3>Partially Damaged Houses</h3>
-                            <p class="effects-value">0</p>
+                            <p id="partially_Damaged_House" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/totallyDamageHouses.png" alt="Totally Damaged Houses GIF">
                             <h3>Totally Damaged Houses</h3>
-                            <p class="effects-value">0</p>
+                            <p id="totally_Damaged_House" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/utilizedEC.png" alt="Evacuation Centers Utilized">
                             <h3>Evacuation Centers Utilized</h3>
-                            <p class="effects-value">0</p>
+                            <p id="evacuation_Center" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/personsInsideEC.png" alt="Persons Inside Evacuation Centers">
                             <h3>Persons inside ECs</h3>
-                            <p class="effects-value">0</p>
+                            <p id="persons_Inside_ECs" class="effects-value">0</p>
                         </div>
                         <div class="effects-card">
                             <img class="incident-card-gif" src="Images/effectsToPopulation/personsOutsideEC.png" alt="Persons Outside Evacuation Centers">
                             <h3>Persons Outside ECs</h3>
-                            <p class="effects-value">0</p>
+                            <p id="persons_Outside_ECs" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                             <div class="class-suspension-card">
                                 <h3>No. of Municipalities</h3>
                                 <p class="whitespace"></p>
-                                <p class="effects-value">0</p>
+                                <p id="class_Suspend_Total" class="effects-value">0</p>
                             </div>
                             <div class="school-levels">
                                 <div class="school-levels-card">
@@ -160,15 +160,15 @@
                                 <section class="school-levels-stats">
                                     <div class="school-levels-card">
                                         <h3>Primary</h3>
-                                        <p class="effects-value">0</p>
+                                        <p id="primary_Total" class="effects-value">0</p>
                                     </div>
                                     <div class="school-levels-card">
                                         <h3>Secondary</h3>
-                                        <p class="effects-value">0</p>
+                                        <p id="secondary_Total" class="effects-value">0</p>
                                     </div>
                                     <div class="school-levels-card">
                                         <h3>Tertiary</h3>
-                                        <p class="effects-value">0</p>
+                                        <p id="tertiary_Total" class="effects-value">0</p>
                                     </div>
                                 </section>
                             </div>
@@ -185,7 +185,7 @@
                             <div class="work-suspension-card">
                                 <h3>No. of Municipalities</h3>
                                 <p class="whitespace"></p>
-                                <p class="effects-value">0</p>
+                                <p id="work_Suspend_Total" class="effects-value">0</p>
                             </div>
                             <div class="work-levels">
                                 <div class="school-levels-card">
@@ -194,11 +194,11 @@
                                 <section class="work-levels-stats">
                                     <div class="work-levels-card">
                                         <h3>Public</h3>
-                                        <p class="effects-value">0</p>
+                                        <p id="work_Public" class="effects-value">0</p>
                                     </div>
                                     <div class="work-levels-card">
                                         <h3>Private</h3>
-                                        <p class="effects-value">0</p>
+                                        <p id="work_Private" class="effects-value">0</p>
                                     </div>
                                 </section>
                             </div>
@@ -217,19 +217,19 @@
                     <div class="power-interruption-stats">
                         <div class="power-interruption-card">
                             <h3>Total Municipalities</h3>
-                            <p class="effects-value">0</p>
+                            <p id="powerInt_Affected_Total" class="effects-value">0</p>
                         </div>
                         <div class="power-interruption-card">
                             <h3>Partial Outage</h3>
-                            <p class="effects-value">0</p>
+                            <p id="powerInt_Partial" class="effects-value">0</p>
                         </div>
                         <div class="power-interruption-card">
                             <h3>Total Outage</h3>
-                            <p class="effects-value">0</p>
+                            <p id="powerInt_Total" class="effects-value">0</p>
                         </div>
                         <div class="power-interruption-card">
                             <h3>Power Restored</h3>
-                            <p class="effects-value">0</p>
+                            <p id="powerInt_Restored" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
@@ -241,11 +241,11 @@
                     <div class="network-service-stats">
                         <div class="network-service-card">
                             <h3>Out of Service</h3>
-                            <p class="effects-value">0</p>
+                            <p id="networkOut_Total" class="effects-value">0</p>
                         </div>
                         <div class="network-service-card">
                             <h3>Service Restored</h3>
-                            <p class="effects-value">0</p>
+                            <p id="networkOut_Restored" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
@@ -257,11 +257,11 @@
                     <div class="water-service-stats">
                         <div class="water-service-card">
                             <h3>Water Interruption</h3>
-                            <p class="effects-value">0</p>
+                            <p id="waterOut_Total" class="effects-value">0</p>
                         </div>
                         <div class="water-service-card">
                             <h3>Service Restored</h3>
-                            <p class="effects-value">0</p>
+                            <p id="waterOut_Restored" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
@@ -273,13 +273,13 @@
                     <div class="infrastructure-stats">
                         <div class="infrastructure-road-card">
                             <div class="infrastructure-figure-card">
-                                <p class="effects-value">0</p>
+                                <p id="infra_Road" class="effects-value">0</p>
                             </div>
                             <h3 class="roads">DAMAGED ROADS</h3>
                         </div>
                         <div class="infrastructure-bridge-card">
                             <div class="infrastructure-figure-card">
-                                <p class="effects-value">0</p>
+                                <p id="infra_Bridge" class="effects-value">0</p>
                             </div>
                             <h3 class="bridge">DAMAGED BRIDGES</h3>
                         </div>
@@ -296,23 +296,23 @@
                     <div class="seaport-stats">
                         <div class="seaport-card">
                             <h3>Suspended Operation</h3>
-                            <p class="effects-value">0</p>
+                            <p id="sea_suspendOp" class="effects-value">0</p>
                         </div>
                         <div class="seaport-card">
                             <h3>Affected Passengers</h3>
-                            <p class="effects-value">0</p>
+                            <p id="sea_Passenger" class="effects-value">0</p>
                         </div>
                         <div class="seaport-card">
                             <h3>Rolling Cargoes</h3>
-                            <p class="effects-value">0</p>
+                            <p id="sea_Rolling_Cargo" class="effects-value">0</p>
                         </div>
                         <div class="seaport-card">
                             <h3>Vessels</h3>
-                            <p class="effects-value">0</p>
+                            <p id="sea_Vessels" class="effects-value">0</p>
                         </div>
                         <div class="seaport-card">
                             <h3>Motorbanca's</h3>
-                            <p class="effects-value">0</p>
+                            <p id="sea_MTBC" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
@@ -321,11 +321,11 @@
                     <div class="airport-stats">
                         <div class="airport-card">
                             <h3>Flights Cancelled</h3>
-                            <p class="effects-value">0</p>
+                            <p id="flight_Affected" class="effects-value">0</p>
                         </div>
                         <div class="airport-card">
                             <h3>Affected Passengers</h3>
-                            <p class="effects-value">0</p>
+                            <p id="flight_Passenger" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
@@ -334,11 +334,11 @@
                     <div class="dam-monitoring-stats">
                         <div class="dam-monitoring-normal-cards">
                             <h3>Normal</h3>
-                            <p class="effects-value">0</p>
+                            <p id="dam_Level_Normal" class="effects-value">0</p>
                         </div>
                         <div class="dam-monitoring-warning-cards">
                             <h3>Warning</h3>
-                            <p class="effects-value">0</p>
+                            <p id="dam_Level_Warning" class="effects-value">0</p>
                         </div>
                     </div>
                 </div>
