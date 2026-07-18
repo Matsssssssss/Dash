@@ -65,8 +65,8 @@ h2 {
     border-top-right-radius: 0px;
 
     background-image:
-        linear-gradient(rgba(207, 216, 233, 0.875), rgba(247, 250, 255, 0.875)),
-        url("Images/parentBackground/waterDrops.gif");
+        linear-gradient(rgba(207, 216, 233, 0.900), rgba(247, 250, 255, 0.900)),
+        url("../Images/parentBackground/waterDrops.gif");
     
     background-size: cover;
     background-position: center;
@@ -132,8 +132,8 @@ h2 {
     padding: 16px;
 
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.450), #ffffff73),
-        url("Images/parentBackground/rainDrops.gif");
+        linear-gradient(rgba(255, 255, 255, 0.490), rgba(255, 255, 255, 0.490)),
+        url("../Images/parentBackground/rainDrops.gif");
     
     background-size: cover;
     background-position: center;
@@ -207,7 +207,7 @@ h2 {
 
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
-        url("Images/suspension/classSuspension.jpg");
+        url("../Images/suspension/classSuspension.jpg");
 
     opacity: .9;
     background-size: cover;
@@ -226,7 +226,7 @@ h2 {
 
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
-        url("Images/suspension/workSuspension.jpeg");
+        url("../Images/suspension/workSuspension.jpeg");
     
     opacity: .9;
     background-size: cover;
@@ -440,7 +440,7 @@ h2 {
 /*THIS IS THE ROW's CONTAINER ALIGNED*/
 .fifth-row {
     display: grid;
-    grid-template-columns: 54.4% 22.5% 22.5%;
+    grid-template-columns: 54% 20% 26%;
     margin-top: 10px;
     align-items: center;
     gap: 12px;
@@ -457,7 +457,7 @@ h2 {
 .airport-stats,
 .dam-monitoring-stats {
     display: grid;
-    margin-top: 16px;
+    margin-top: 8px;
     align-items: center;
     gap: 6px;
 }
@@ -501,6 +501,7 @@ h2 {
     border: 1px solid #dbfee1;
     border-radius: 10px;
     min-height: 90px;
+    min-width: 0px;
     padding: 16px;
     text-align: center;
     display: flex;
@@ -514,6 +515,7 @@ h2 {
     border: 1px solid #dbeafe;
     border-radius: 10px;
     min-height: 90px;
+    min-width: 0px;
     padding: 16px;
     text-align: center;
     display: flex;
@@ -558,9 +560,9 @@ h2 {
     background: #86e28e;
     border: 1px solid #4ca740;
     border-radius: 10px;
-    padding: 5px;
+    padding: 4px;
+    margin: 0 24px 0 0;
     position: relative;
-    margin-bottom: 0;
 }
 
 .power-interruption {
@@ -626,7 +628,7 @@ h2 {
 
     background-image:
     linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
-    url("Images/effectsToInfra/impassableRoadBG.png");
+    url("../Images/effectsToInfra/impassableRoadBG.png");
     
     opacity: 100%;
     background-size: cover;
@@ -677,7 +679,7 @@ h2 {
 
     background-image:
     linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
-    url("Images/effectsToInfra/impassableBridgeBG.jpg");
+    url("../Images/effectsToInfra/impassableBridgeBG.jpg");
 
     opacity: 100%;
     background-size: cover;
@@ -846,15 +848,15 @@ h2 {
 }
 
 .iloMun .figure.red {
-    background: #dc2626;
+    background: rgb(220, 38, 38);
 }
 
 .iloMun .figure.blue {
-    background: #2563eb;
+    background: rgb(37, 99, 235);
 }
 
 .iloMun .figure.white {
-    background: #f8fafc;
+    background: rgb(248, 250, 252);
 }
 
 .value {
@@ -873,7 +875,7 @@ h2 {
 }
 
 .iloEOC .figure {
-    background: #2563eb;
+    background: rgb(37, 99, 235);
     color: #000000;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
