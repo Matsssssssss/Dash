@@ -1,68 +1,84 @@
-/*const API_URL = "https://script.google.com/u/0/home/projects/1se06c_3siojze2c0iCEJUWXZVdMtVOs_vfLfebzWcXmNsHMt2KiP814o/exec"
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQOZE49guspwCL3KCvtEgyvVBqf4A93edMmN9kjPKoErKKpyQG6DOXJLhlpzxUwt_3W9N7bYn3R0KOJITsRqF4M9mOan6UR21v_kv-_lEUlgtSb2jEh5uWq4q97LIDVWEKVzQqh0hcgFkAI2V_aazORrM9jaMFqC3W8v8w0p3vMrj-gMxNGlNS_5GA54mBv4ybRdcpDlEAAY1b72Qz2qaloztsI85SPVGsByzYXtEFvmACh33l8NktugjQ7D__eNhza-0vsHpfiKTzBnt6EXITYRU9jcQ&lib=MuNFb-ccTKOTp0Z9syHi-3uLM_uChZ4QT"
 
-fetch(API_URL)
-.then(res => res.json())
-.then(data => {
+function loadData()
+{
+    fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
 
-    console.log(data);
 
-    document.getElementById("color_Card").textContent = data.iloiloAlertStatus;
-    document.getElementById("white_Alert").textContent = data.totalWhiteAlert;
-    document.getElementById("blue_Alert").textContent = data.totalBlueAlert;
-    document.getElementById("red_Alert").textContent = data.totalRedAlert;
+        const status = data.iloiloAlertStatus;
+        const card = document.getElementById("color_Card");
+        if (status === "WHITE") {
+            card.style.background = "rgb(248, 250, 252)";
+        }
+        else if (status === "BLUE") {
+            card.style.background = "rgb(37, 99, 235)";
+        }
+        else if (status === "RED") {
+            card.style.background = "rgb(220, 38, 38)";
+        }
+
+        document.getElementById("color_Card").textContent = data.iloiloAlertStatus;
+        document.getElementById("white_Alert").textContent = data.totalWhiteAlert;
+        document.getElementById("blue_Alert").textContent = data.totalBlueAlert;
+        document.getElementById("red_Alert").textContent = data.totalRedAlert;
     
-    document.getElementById("flood_Incident").textContent = data.totalFlood;
-    document.getElementById("rain_Induced_Landslide").textContent = data.totalLandslide;
-    document.getElementById("mun_AffectedbyIncident_Total").textContent = data.totalIncidentMun;
-    document.getElementById("brgys_AffectedbyIncident_Total").textContent = data.totalIncidentBrgy;
+        document.getElementById("flood_Incident").textContent = data.totalFlood;
+        document.getElementById("rain_Induced_Landslide").textContent = data.totalLandslide;
+        document.getElementById("mun_AffectedbyIncident_Total").textContent = data.totalIncidentMun;
+        document.getElementById("brgys_AffectedbyIncident_Total").textContent = data.totalIncidentBrgy;
 
-    document.getElementById("casualty").textContent = data.totalCasualty;
-    document.getElementById("mun_Affected").textContent = data.munAffected;
-    document.getElementById("brgy_Affected").textContent = data.brgyAffected;
-    document.getElementById("family_Affected").textContent = data.familiesAffected;
-    document.getElementById("persons_Affected").textContent = data.personsAffected;
-    document.getElementById("partially_Damaged_House").textContent = data.partiallyDamangedH;
-    document.getElementById("totally_Damaged_House").textContent = data.totallyDamangedH;
-    document.getElementById("evacuation_Center").textContent = data.evacCenterUtilized;
-    document.getElementById("persons_Inside_ECs").textContent = data.personsInsideEC;
-    document.getElementById("persons_Outside_ECs").textContent = data.personsOutsideEC;
+        document.getElementById("casualty").textContent = data.totalCasualty;
+        document.getElementById("mun_Affected").textContent = data.munAffected;
+        document.getElementById("brgy_Affected").textContent = data.brgyAffected;
+        document.getElementById("family_Affected").textContent = data.familiesAffected;
+        document.getElementById("persons_Affected").textContent = data.personsAffected;
+        document.getElementById("partially_Damaged_House").textContent = data.partiallyDamangedH;
+        document.getElementById("totally_Damaged_House").textContent = data.totallyDamangedH;
+        document.getElementById("evacuation_Center").textContent = data.evacCenterUtilized;
+        document.getElementById("persons_Inside_ECs").textContent = data.personsInsideEC;
+        document.getElementById("persons_Outside_ECs").textContent = data.personsOutsideEC;
 
-    document.getElementById("class_Suspend_Total").textContent = data.classSuspendMun;
-    document.getElementById("primary_Total").textContent = data.primarySchools;
-    document.getElementById("secondary_Total").textContent = data.secondarySchools;
-    document.getElementById("tertiary_Total").textContent = data.tertiarySchools;
+        document.getElementById("class_Suspend_Total").textContent = data.classSuspendMun;
+        document.getElementById("primary_Total").textContent = data.primarySchools;
+        document.getElementById("secondary_Total").textContent = data.secondarySchools;
+        document.getElementById("tertiary_Total").textContent = data.tertiarySchools;
 
-    document.getElementById("work_Suspend_Total").textContent = data.workSuspendMun;
-    document.getElementById("work_Public").textContent = data.publicWorks;
-    document.getElementById("work_Private").textContent = data.privateWorks;
+        document.getElementById("work_Suspend_Total").textContent = data.workSuspendMun;
+        document.getElementById("work_Public").textContent = data.publicWorks;
+        document.getElementById("work_Private").textContent = data.privateWorks;
 
-    document.getElementById("powerInt_Affected_Total").textContent = data.noPowerMun;
-    document.getElementById("powerInt_Partial").textContent = data.noPowerPartial;
-    document.getElementById("powerInt_Total").textContent = data.noPowerTotal;
-    document.getElementById("powerInt_Restored").textContent = data.noPowerRestored;
+        document.getElementById("powerInt_Affected_Total").textContent = data.noPowerMun;
+        document.getElementById("powerInt_Partial").textContent = data.noPowerPartial;
+        document.getElementById("powerInt_Total").textContent = data.noPowerTotal;
+        document.getElementById("powerInt_Restored").textContent = data.noPowerRestored;
 
-    document.getElementById("networkOut_Total").textContent = data.networkOutOfService;
-    document.getElementById("networkOut_Restored").textContent = data.networkServiceRestored;
+        document.getElementById("networkOut_Total").textContent = data.networkOutOfService;
+        document.getElementById("networkOut_Restored").textContent = data.networkServiceRestored;
 
-    document.getElementById("waterOut_Total").textContent = data.waterInterruption;
-    document.getElementById("waterOut_Restored").textContent = data.waterRestored;
+        document.getElementById("waterOut_Total").textContent = data.waterInterruption;
+        document.getElementById("waterOut_Restored").textContent = data.waterRestored;
 
-    document.getElementById("infra_Road").textContent = data.totalDamagedRoads;
-    document.getElementById("infra_Bridge").textContent = data.totalDamagedBridges;
+        document.getElementById("infra_Road").textContent = data.totalDamagedRoads;
+        document.getElementById("infra_Bridge").textContent = data.totalDamagedBridges;
 
-    document.getElementById("sea_suspendOp").textContent = data.seaSuspension;
-    document.getElementById("sea_Passenger").textContent = seaPassengers;
-    document.getElementById("sea_Rolling_Cargo").textContent = seaCargoes;
-    document.getElementById("sea_Vessels").textContent = seaVessels;
-    document.getElementById("sea_MTBC").textContent = seaMTBC;
+        document.getElementById("sea_suspendOp").textContent = data.seaSuspension;
+        document.getElementById("sea_Passenger").textContent = data.seaPassengers;
+        document.getElementById("sea_Rolling_Cargo").textContent = data.seaCargoes;
+        document.getElementById("sea_Vessels").textContent = data.seaVessels;
+        document.getElementById("sea_MTBC").textContent = data.seaMTBC;
 
-    document.getElementById("flight_Affected").textContent = flightCancelled;
-    document.getElementById("flight_Passenger").textContent = flightPassenger;
+        document.getElementById("flight_Affected").textContent = data.flightCancelled;
+        document.getElementById("flight_Passenger").textContent = data.flightPassenger;
 
-    document.getElementById("dam_Level_Normal").textContent = normalDamLevel;
-    document.getElementById("dam_Level_Warning").textContent = warningDamLevel;
-});*/
+        document.getElementById("dam_Level_Normal").textContent = data.normalDamLevel;
+        document.getElementById("dam_Level_Warning").textContent = data.warningDamLevel;
+    });
+}
 
+//Below is for good for localhosting, edit the spreadsheet's info
+/*
 let SHEET_ID = '1RssDO1AS4Z0XcOcBxIT7TicqMgZKHNkroQORvhrxpnM'
 let SHEET_TITLE = 'OPDRRMO_SitRep';
 let SHEET_RANGE = 'A1:J28'
@@ -80,7 +96,7 @@ function loadData(){
 
         let data = JSON.parse(rep.substr(47).slice(0,-2));
 
-        /*//EOC ALERT STATUS CARD
+        //EOC ALERT STATUS CARD
         const status = data.table.rows[2].c[0].v;
         const card = document.getElementById("color_Card");
 
@@ -92,7 +108,7 @@ function loadData(){
         }
         else if (status === "Red") {
             card.style.background = "rgb(220, 38, 38)";
-        }*/
+        }
 
         //MUNICIPALITIES ALERT STATUS
         let white_Alert = document.getElementById('white_Alert');
@@ -205,7 +221,7 @@ function loadData(){
         dam_Level_Warning.innerHTML = data.table.rows[20].c[4].v;
     })
     .catch(err => console.error(err));
-}
+}*/
 
 // Load when the page opens
 loadData();
