@@ -77,7 +77,7 @@ function loadData()
     });
 }
 
-//Below is for good for localhosting, edit the spreadsheet's info
+//Below is good for localhosting, edit the spreadsheet's info
 /*
 let SHEET_ID = '1RssDO1AS4Z0XcOcBxIT7TicqMgZKHNkroQORvhrxpnM'
 let SHEET_TITLE = 'OPDRRMO_SitRep';

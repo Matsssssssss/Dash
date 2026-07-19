@@ -1,18 +1,6 @@
-Building...
+This is a live data feeding for typhoon dashboard that visualize of data figures and can be use for helping the executives for their decision making, faster actions, and boosting the effectiveness of operations. 
 
-7/14/26 --- Summary I, II is complete, The Layout of the dashboard is organized,
-
-What to do:
-
-    Looks
-    {
-        Put some comments to certain blocks of html and css for reference.
-        Aesthetics of every container
-    }
-
-    Functionality
-    {
-        Write the script
-    }
-
-    LASTLY, Optimize for mobile friendly interface
+Process Flow:
+{
+    raw data --> google spreadsheet --> google appscript --> javascript -> html
+}

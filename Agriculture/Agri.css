@@ -54,3 +54,15 @@ h2 {
     padding-top: 0px;
     background: #1a2b52d7;
 }
+
+.sumarry-reports {
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.700), rgba(255, 255, 255, 0.700)),
+        url("../Images/underConstruction.jpeg");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 1200px;
+}
