@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Aharoni, "Aharoni Bold", sans-serif;
     background: #ffffff;
     color: #000000;
     justify-content: center;
@@ -14,7 +14,7 @@ body {
 }
 
 h2 {
-    font-family: 'Courier New', serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .whitespace {
@@ -112,6 +112,11 @@ h2 {
     padding: 6px;
 }
 
+.iloEOC .eoc,
+.iloMun .munStats {
+    font-size: 1.20rem;
+}
+
 .effects-population {
     width: 100%;
     margin-top: 20px;
@@ -124,7 +129,6 @@ h2 {
 .effects-population h2 {
     margin-top: 0;
     margin-bottom: 12px;
-    font-family: 'Courier New', serif;
 }
 
 .effects-content {
@@ -536,7 +540,20 @@ h2 {
     font-size: 0.95rem;
 }
 
-.seaport-card .effects-value,
+.seaport-card .vessels {
+    margin: 0;
+    font-size: 0.95rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.seaport-card .mtbc {
+    margin: 0;
+    font-size: 0.95rem;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
 .airport-card .effects-value,
 .dam-monitoring-normal-cards .effects-value,
 .dam-monitoring-warning-cards .effects-value {
@@ -735,22 +752,7 @@ h2 {
     padding-right: 40px;
     margin-bottom: -20px;
 }
-/*
-.seaports {
-    flex: 0 0 calc(50% - 15px);
-    min-width: 220px;
-}
 
-.dam-monitoring {
-    flex: 0 0 calc(25% - 15px);
-    min-width: 180px;
-}
-
-.airport {
-    flex: 0 0 calc(25% - 15px);
-    min-width: 180px;
-}
-*/
 .power-interruption h2,
 .network-service h2,
 .water-service h2,
@@ -758,7 +760,6 @@ h2 {
 .seaports h2,
 .dam-monitoring h2 {
     margin-top: 0;
-    font-family: 'Courier New', serif;
     padding: 8px;
 }
 
@@ -837,8 +838,8 @@ h2 {
 .iloMun h2 {
     width: 100%;
     margin-top: 0;
-    padding-top: 10px;
-    margin-bottom: 2px;
+    padding-top: 2px;
+    margin-bottom: 10px;
     padding-bottom: 0px;
 }
 
@@ -953,7 +954,6 @@ h2 {
     font-weight: 650;
     margin: 0;
     
-    font-family: 'Montserrat', sans-serif;
     overflow-wrap: break-word;
     word-break: break-word;
     overflow: hidden;

@@ -2,5 +2,5 @@ This is a live data feeding for typhoon dashboard that visualize of data figures
 
 Process Flow:
 {
-    raw data --> google spreadsheet --> google appscript --> javascript -> html
+    raw data --> google spreadsheet --> google appscript --> javascript --> html
 }
