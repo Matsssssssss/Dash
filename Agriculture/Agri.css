@@ -11,10 +11,16 @@ body {
     color: #000000;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 h2 {
     font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.20rem;
 }
 
 .top-nav {
@@ -70,16 +76,84 @@ h2 {
     color: #b91c1c;
     margin-top: 0;
     margin-bottom: 16px;
-    padding-top: 12px;
+    padding-top: 24px;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .agriculture-production-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 4px;
+    grid-template-columns: 20% 40% 40%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.product-classification,
+.farmers-affected,
+.area-affected {
+    display: grid;
+    margin-top: 20px;
+    min-width: 0px;
     justify-items: center;
+    justify-content: center;
+    padding: 4px 0 0px 0;
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
+}
+
+.product-classification {
+    border-top-left-radius: 12px;
+}
+
+.area-affected {
+    border-top-right-radius: 12px;
+}
+
+.product-rice,
+.product-corn,
+.product-hvcc,
+.product-LnP,
+.product-fisheries {
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
+}
+
+.product-rice h3,
+.product-corn h3,
+.product-hvcc h3,
+.product-LnP h3,
+.product-fisheries h3 {
+    font-size: 0.90rem;
+    padding: 16px;
+}
+
+.rice-farmers-affected,
+.rice-area-affected,
+.corn-farmers-affected,
+.corn-area-affected,
+.hvcc-farmers-affected,
+.hvcc-area-affected,
+.livNPoultry-farmers-affected,
+.livNPoultry-area-affected,
+.fisheries-farmers-affected,
+.fisheries-area-affected {
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
+}
+
+.product-total,
+.total-farmers-affected,
+.total-area-affected {
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
+}
+
+.product-total {
+    border-bottom-left-radius: 12px;
+}
+
+.total-area-affected {
+    border-bottom-right-radius: 12px;
 }
 
 .machine-equipment {
@@ -89,7 +163,36 @@ h2 {
 
 .machine-equipment-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 4px;
-    justify-items: center;
+    grid-template-columns: 50% 50%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.machine-equipment-titleBar {
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 16px 0 16px 0;
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.production-loss-vol,
+.production-loss-val {
+    display: grid;
+    min-width: 0px;
+    margin-top: -20px;
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
+}
+
+.loss-vol-rice,
+.loss-val-rice,
+.loss-vol-corn,
+.loss-val-corn,
+.loss-vol-hvcc,
+.loss-val-hvcc {
+    background-color: rgba(55, 129, 52, 0.65);
+    border: 1.5px solid rgb(22, 99, 19);
 }
