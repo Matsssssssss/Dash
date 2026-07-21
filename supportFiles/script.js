@@ -6,7 +6,6 @@ function loadData()
     .then(res => res.json())
     .then(data => {
 
-
         const status = data.iloiloAlertStatus;
         const card = document.getElementById("color_Card");
         if (status === "WHITE") {

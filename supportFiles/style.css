@@ -668,9 +668,7 @@ h2 {
     text-align: center;
     justify-content: center;
     padding: 16px;
-    margin-right: 0%;
     padding-right: 37px;
-    margin-left: -18px;
     margin-top: -20px;
     margin-bottom: -20px;
 }
@@ -718,9 +716,7 @@ h2 {
     text-align: center;
     justify-content: center;
     padding: 16px;
-    margin-right: 0%;
     padding-right: 37px;
-    margin-left: 0%;
     margin-top: -20px;
     margin-bottom: -20px;
 }
@@ -885,7 +881,7 @@ h2 {
 }
 
 .iloEOC .figure {
-    background: rgb(37, 99, 235);
+    background: rgb(251, 251, 252);
     color: #000000;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
