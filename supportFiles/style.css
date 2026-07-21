@@ -444,7 +444,7 @@ h2 {
 /*THIS IS THE ROW's CONTAINER ALIGNED*/
 .fifth-row {
     display: grid;
-    grid-template-columns: 54% 20% 26%;
+    grid-template-columns: 53% 18% 29%;
     margin-top: 10px;
     align-items: center;
     gap: 12px;
