@@ -1,4 +1,4 @@
-const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQOZE49guspwCL3KCvtEgyvVBqf4A93edMmN9kjPKoErKKpyQG6DOXJLhlpzxUwt_3W9N7bYn3R0KOJITsRqF4M9mOan6UR21v_kv-_lEUlgtSb2jEh5uWq4q97LIDVWEKVzQqh0hcgFkAI2V_aazORrM9jaMFqC3W8v8w0p3vMrj-gMxNGlNS_5GA54mBv4ybRdcpDlEAAY1b72Qz2qaloztsI85SPVGsByzYXtEFvmACh33l8NktugjQ7D__eNhza-0vsHpfiKTzBnt6EXITYRU9jcQ&lib=MuNFb-ccTKOTp0Z9syHi-3uLM_uChZ4QT"
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRLH2z6vQ0_Fv53HnyyXGy1NkgNZuuEuJ_0W99ZAGv5VneyUg3pHZ_P7_l3YeW4b13N8soClRdzcxSTalmE_f9XnJfj8pLUQIkqDRfMF92SDUt-CgNPoHLbrkT1MspvS0iVGbKZDh-VPJmw0UQ657BPNfgUmRxZIBUnLaElccwfEqr3WaBcM0tuPHriPeRoA9hg6Ed91asJFQh-439279qwyix-gGptBVUW6TUPsNCETVH4SsmXyrbLo-Yu9tW6S9_UySEO4u8K2bHGaM4&lib=Mt612KXNGpwFMaxPGn_tezFmhg4GGKv_m"
 
 function loadData()
 {
@@ -73,8 +73,50 @@ function loadData()
 
         document.getElementById("dam_Level_Normal").textContent = data.normalDamLevel;
         document.getElementById("dam_Level_Warning").textContent = data.warningDamLevel;
+
+        const roadCard = document.getElementById("roadCard");
+        const bridgeCard = document.getElementById("bridgeCard");
+
+        //road
+        if(data.damagedRoadPhotos){
+            roadCard.classList.add("folder-available");
+            roadCard.onclick=()=>{
+                openViewer(data.roadImages);
+            };
+        }
+        
+        //bridge
+        if(data.damagedBridgePhotos){
+            bridgeCard.classList.add("folder-available");
+            bridgeCard.onclick=()=>{
+                openViewer(data.bridgeImages);
+            };
+        }
     });
 }
+
+function openViewer(images){
+    const modal = document.getElementById("photoModal");
+    const gallery = document.getElementById("photoGallery");
+
+    gallery.innerHTML = "";
+
+    images.forEach(image=>{
+        const img = document.createElement("img");
+        img.src = image.thumbnail;
+        img.alt = image.name;
+        img.onclick = ()=>{
+            window.open(image.full,"_blank");
+        };
+        gallery.appendChild(img);
+    });
+    modal.style.display="block";
+}
+
+document.querySelector(".close-modal").onclick=()=>{
+
+    document.getElementById("photoModal").style.display="none";
+};
 
 //Below is good for localhosting, edit the spreadsheet's info
 /*

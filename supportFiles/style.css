@@ -749,6 +749,34 @@ h2 {
     margin-bottom: -20px;
 }
 
+.infrastructure-figure-card{
+    cursor: default;
+    transition: .3s;
+}
+.folder-available{
+    cursor: pointer;
+}
+.folder-available:hover{
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 18px rgba(0,120,255,.30);
+}
+.folder-available{
+    position: relative;
+    overflow: visible;
+}
+.folder-available::after{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:12px;
+    border:3px solid #39a8ff;
+    animation:radiate 2.2s infinite;
+}
+.folder-available:active{
+    transform:scale(.95);
+}
+
 .power-interruption h2,
 .network-service h2,
 .water-service h2,
@@ -967,6 +995,40 @@ h2 {
     overflow: hidden;
 }
 
+/*This is a modal Popup*/
+.photo-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    z-index:99999;
+}
+.photo-modal-content{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    max-height:90vh;
+    overflow:auto;
+}
+.photo-gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:15px;
+}
+.photo-gallery img{
+    width:100%;
+    border-radius:8px;
+    cursor:pointer;
+}
+.close-modal{
+    float:right;
+    font-size:35px;
+    cursor:pointer;
+}
+
 @media (max-width: 700px) {
     .incident-card--with-gif {
         flex-direction: column;
@@ -1053,5 +1115,16 @@ h2 {
     .water-service,
     .effects-infrastructure {
         width: min(100%, 400px);
+    }
+}
+
+@keyframes radiate{
+    0%{
+        transform:scale(1);
+        opacity:.9;
+    }
+    100%{
+        transform:scale(1.18);
+        opacity:0;
     }
 }
