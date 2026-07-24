@@ -1,4 +1,4 @@
-const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRLH2z6vQ0_Fv53HnyyXGy1NkgNZuuEuJ_0W99ZAGv5VneyUg3pHZ_P7_l3YeW4b13N8soClRdzcxSTalmE_f9XnJfj8pLUQIkqDRfMF92SDUt-CgNPoHLbrkT1MspvS0iVGbKZDh-VPJmw0UQ657BPNfgUmRxZIBUnLaElccwfEqr3WaBcM0tuPHriPeRoA9hg6Ed91asJFQh-439279qwyix-gGptBVUW6TUPsNCETVH4SsmXyrbLo-Yu9tW6S9_UySEO4u8K2bHGaM4&lib=Mt612KXNGpwFMaxPGn_tezFmhg4GGKv_m"
+const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQ0ST3oH6ebUWcL8xd_9iSSW97qHoSpG-9dIayeFH-lWgjNsr5jVeRvH954STkAke99b86thiSN9sIN4o2MzQ0CCCWxBhzV1O5yNcm7ACjbiMr9XauDz8omp-DA_Pu_uoOzSlZgOAK2k6xhdfn-0tZSDWkQTRgni_fc9AZXupeCKAqGHQaMPFcRT-QSwUtJHRNZp3VGi7e8cXjBztRS8-9IMgb73bYUgHZqaHsdQWMy1So4jMGX15J0rigUv_SJhQZchRgoKFnqxKf0b5EoegSZv4TNVg&lib=Mt612KXNGpwFMaxPGn_tezFmhg4GGKv_m"
 
 function loadData()
 {
@@ -17,6 +17,11 @@ function loadData()
         else if (status === "RED") {
             card.style.background = "rgb(220, 38, 38)";
         }
+
+        document.getElementById("titleText").textContent = data.pageTitle;
+        document.getElementById("sitRep1").textContent = data.sitRepNo;
+        document.getElementById("sitRep2").textContent = data.sitRepTime;
+        document.getElementById("sitRep3").textContent = data.sitRepDate;
 
         document.getElementById("color_Card").textContent = data.iloiloAlertStatus;
         document.getElementById("white_Alert").textContent = data.totalWhiteAlert;
