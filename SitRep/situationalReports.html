@@ -27,14 +27,28 @@
             <li><a href="../Agriculture/agricultural-damage.html">Agriculture</a></li>
             <li><a href="../Dromic/dromic-report.html">Dromic</a></li>
             <li><a href="situationalReports.html">Reports</a></li>
+            <script src="sitRep.js"></script>
         </ul>
     </nav>  <!--This is the end of top navigation bar-->
 
     <main class="dashboard">
 
         <!--This is the parent class container of the Typhoon Dashboard-->
-        <section class="sumarry-reports">  
-            <h1> </h1>
+        <section class="summary-reports">
+
+            <div class="report-header">
+                <h1>Latest Situational Report</h1>
+            </div>
+            <div class="pdfName">
+                <p id="reportInfo"></p>
+            </div>
+
+            <iframe
+                id="pdfViewer"
+                class="pdf-viewer"
+                src=""
+                loading="lazy">
+            </iframe>
         </section>
 </body>
 </html>

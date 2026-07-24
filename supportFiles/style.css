@@ -689,11 +689,11 @@ h2 {
 }
 
 .power-interruption {
+    background: #eef4ff;
+    border: 1px solid #3c3d3dcb;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: #eef4ff;
-    border: 1px solid #3c3d3dcb;
     border-radius: 10px;
     padding: 5px;
     position: relative;
