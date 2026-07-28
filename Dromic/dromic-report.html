@@ -17,12 +17,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Dromic.css">
+    <link rel="stylesheet" href="../supportFiles/dromic.css">
+    <script src="../supportFiles/dromic.js" defer></script>
 </head>
 <body>
     <nav class="top-nav">
-        <div class="brand">Provincial Community Defense Action Center</div>
-        <ul class="nav-links">
+        <div class="brand">
+        Provincial Community Defense Action Center
+        </div>
+
+        <button class="menu-toggle" id="menuToggle">
+        ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="../index.html">Typhoon</a></li>
             <li><a href="../Agriculture/agricultural-damage.html">Agriculture</a></li>
             <li><a href="dromic-report.html">Dromic</a></li>
@@ -31,7 +39,6 @@
     </nav>  <!--This is the end of top navigation bar-->
 
     <main class="dashboard">
-
         <!--This is the parent class container of the Typhoon Dashboard-->
         <section class="sumarry-reports">  
             <h1> </h1>

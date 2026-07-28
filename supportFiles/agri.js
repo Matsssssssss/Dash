@@ -1,3 +1,25 @@
+const menuToggle = document.getElementById("menuToggle");
+
+const navLinks = document.getElementById("navLinks");
+menuToggle.addEventListener("click",()=>{
+    navLinks.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        navLinks.classList.remove("active");
+    });
+
+    menuToggle.addEventListener("click",()=>{
+    navLinks.classList.toggle("active");
+    menuToggle.textContent =
+        navLinks.classList.contains("active")
+        ? "✖"
+        : "☰";
+});
+});
+
+
 const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSx8Z42n66ZY0t6AxzOMDQxyLY6VApkVPeYE2eXCpoa-7UKO738VSmhRFD_YYPT6I1PA3zV5qCpllsJrg-_4N9Ah_rGrA9a87-9uySrXroraUTuynril1byD_jzEhJKZ3Guyq9CWr2EIxy7d_AgeZR-wtxMWsO3bMbYXIYW9NYT4-mSKQsAUdweKboPWr3X3KxKGM4teZrg5jlIi1kZqOnIme1kSeGP2rNFBfO1n1X3zLRoHZH0Z4k-WEUO-_kspDr752X2Fffp7IKTmcZ8xD2PB_FuBg&lib=MhdpfYgk_-ue8kdXH2HQjxeLM_uChZ4QT"
 
 function loadData()

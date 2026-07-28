@@ -22,8 +22,15 @@
 </head>
 <body>
     <nav class="top-nav">
-        <div class="brand">Provincial Community Defense Action Center</div>
-        <ul class="nav-links">
+        <div class="brand">
+        Provincial Community Defense Action Center
+        </div>
+
+        <button class="menu-toggle" id="menuToggle">
+        ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Typhoon</a></li>
             <li><a href="Agriculture/agricultural-damage.html">Agriculture</a></li>
             <li><a href="Dromic/dromic-report.html">Dromic</a></li>
@@ -35,9 +42,10 @@
 
         <!--This is the parent class container of the Typhoon Dashboard-->
         <section class="sumarry-reports">  
-            <h1 id="titleText">TYPHOON DASHBOARD</h1>
-            <p class="subText">Relative to PDRRMO Situational Report No. <span id="sitRep1">number</span> as of 
-                <span id="sitRep2">time</span> of <span id="sitRep3">date</span>.</p>
+            <h1 id="titleText">[TYPHOON NAME]</h1>
+            <p class="subText">Relative to PDRRMO Situational Report No. <span id="sitRep1">[Number]</span> as of 
+                <span id="sitRep2">[Time]
+                </span> of <span id="sitRep3">[Date]</span>.</p>
             <div class="sumarry-content">   <!--This division is for the 1st Row-->
 
                 <!--This is the 2nd container "1st Row, 1st Column" "Alert Status"-->
