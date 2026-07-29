@@ -1078,7 +1078,7 @@ h2 {
     overflow: hidden;
 }
 
-/*This is a modal Popup*/
+/*This is the modal Popup*/
 .photo-modal{
     display:none;
     position:fixed;
@@ -1110,6 +1110,35 @@ h2 {
     float:right;
     font-size:35px;
     cursor:pointer;
+}
+
+.photo-card{
+    display:flex;
+    flex-direction:column;
+    background:#f8fafc;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.photo-card img{
+    width:100%;
+    display:block;
+    cursor:pointer;
+}
+
+.photo-label{
+    display: flex;
+    justify-content: space-between;
+    margin:0;
+    padding:10px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:.9rem;
+    font-weight:550;
+    text-align:center;
+    background:rgba(4, 24, 70, 0.75);
+    color:rgb(0, 0, 0);
+    word-break:break-word;
 }
 
 @media (max-width: 700px) {

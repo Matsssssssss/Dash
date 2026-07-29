@@ -129,13 +129,25 @@ function openViewer(images){
     gallery.innerHTML = "";
 
     images.forEach(image=>{
+        const card = document.createElement("div");
+        card.className = "photo-card";
+
         const img = document.createElement("img");
         img.src = image.thumbnail;
         img.alt = image.name;
-        img.onclick = ()=>{
-            window.open(image.full,"_blank");
+
+        img.onclick = () => {
+            window.open(image.full, "_blank");
         };
-        gallery.appendChild(img);
+
+        const label = document.createElement("p");
+        label.className = "photo-label";
+        label.textContent = image.name.replace(/\.[^/.]+$/, "");
+
+        card.appendChild(img);
+        card.appendChild(label);
+
+        gallery.appendChild(card);
     });
     modal.style.display="block";
 }
