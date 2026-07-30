@@ -5,7 +5,7 @@
 }
 
 body {
-    padding-top: 45px;
+    padding-top: 50px;
     margin: 0;
     font-family: Aharoni, "Aharoni Bold", sans-serif;
     background: #ffffff;
@@ -22,47 +22,6 @@ h2 {
 h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.20rem;
-}
-
-.top-nav {
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#0f172a;
-    padding:12px 20px;
-
-    z-index:9999;
-}
-
-.brand {
-    text-align: left;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color:white;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 16px;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-}
-
-.menu-toggle{
-    display:none;
 }
 
 .dashboard {
@@ -213,85 +172,126 @@ h3 {
 }
 
 
-
-@media (max-width: 900px) {
-    .menu-toggle{
-        display:block;
-        font-size:1.8rem;
-        background:none;
-        border:none;
-        color:white;
-        cursor:pointer;
-    }
-
-    .nav-links{
-        display:none;
-        flex-direction:column;
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        background:#0f172a75;
-        padding:2px 0 6px;
-    }
-
-    .nav-links.active{
-        display:flex;
-    }
-
-    .nav-links li{
-        text-align:right;
-        padding-right: 22px;
-        border-bottom:1px solid rgba(255,255,255,.15);
-    }
-    .nav-links li:last-child{
-        border-bottom:none;
-    }
+.agriculture-production-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
 }
 
 
-@media (max-width: 700px) {
-    .menu-toggle{
-        display:block;
-        font-size:1.8rem;
-        background:none;
-        border:none;
-        color:white;
-        cursor:pointer;
+
+@media (max-width: 700px), (max-width: 900px) {
+    /*product loss div*/
+    .agriculture-production-grid {
+        grid-template-columns:1fr;
+        gap:12px;
     }
 
-    .nav-links{
+    /*hide table header*/
+    .product-classification,
+    .farmers-affected,
+    .area-affected,
+    .production-loss-vol,
+    .production-loss-val {
         display:none;
-        flex-direction:column;
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        background:#0f172a75;
-        padding:2px 0 6px;
     }
 
-    .nav-links.active{
-        display:flex;
+    /*every row becomes a card*/
+    .product-rice,
+    .product-corn,
+    .product-hvcc,
+    .product-LnP,
+    .product-fisheries,
+    .product-total {
+        background:#1f4e79;
+        color:white;
+
+        padding:10px;
+        border-radius:10px 10px 0 0;
     }
 
-    .nav-links li{
-        text-align:right;
-        padding-right: 22px;
-        border-bottom:1px solid rgba(255,255,255,.15);
-    }
-    .nav-links li:last-child{
-        border-bottom:none;
-    }
-}
+    /*value style*/
+    .rice-farmers-affected,
+    .rice-area-affected,
 
-@keyframes radiate{
-    0%{
-        transform:scale(1);
-        opacity:.9;
+    .corn-farmers-affected,
+    .corn-area-affected,
+
+    .hvcc-farmers-affected,
+    .hvcc-area-affected,
+
+    .livNPoultry-farmers-affected,
+    .livNPoultry-area-affected,
+
+    .fisheries-farmers-affected,
+    .fisheries-area-affected,
+
+    .total-farmers-affected,
+    .total-area-affected {
+        padding:14px;
+        border:1px solid #ddd;
+        border-top:none;
     }
-    100%{
-        transform:scale(1.18);
-        opacity:0;
+
+    /*labels*/
+    .rice-farmers-affected::before,
+    .corn-farmers-affected::before,
+    .hvcc-farmers-affected::before,
+    .livNPoultry-farmers-affected::before,
+    .fisheries-farmers-affected::before,
+    .total-farmers-affected::before {
+        content:"Farmers Affected";
+        display:block;
+        font-weight:bold;
+        margin-bottom:6px;
+    }
+    .rice-area-affected::before,
+    .corn-area-affected::before,
+    .hvcc-area-affected::before,
+    .livNPoultry-area-affected::before,
+    .fisheries-area-affected::before,
+    .total-area-affected::before {
+        content:"Crop Affected Area";
+        display:block;
+        font-weight:bold;
+        margin-bottom:6px;
+    }
+
+
+    /*damage to machineries*/
+    .machine-equipment-grid {
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
+    /*labels*/
+    .loss-vol-rice::before {
+        content:"Rice Production Loss (MT)";
+        display:block;
+        font-weight:bold;
+    }
+    .loss-vol-corn::before {
+        content:"Corn Production Loss (MT)";
+        display:block;
+        font-weight:bold;
+    }
+    .loss-vol-hvcc::before {
+        content:"HVCC Production Loss (MT)";
+        display:block;
+        font-weight:bold;
+    }
+    .loss-val-rice::before {
+        content:"Rice Damage Value (₱)";
+        display:block;
+        font-weight:bold;
+    }
+    .loss-val-corn::before {
+        content:"Corn Damage Value (₱)";
+        display:block;
+        font-weight:bold;
+    }
+    .loss-val-hvcc::before {
+        content:"HVCC Damage Value (₱)";
+        display:block;
+        font-weight:bold;
     }
 }

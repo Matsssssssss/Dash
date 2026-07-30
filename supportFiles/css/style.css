@@ -5,7 +5,7 @@
 }
 
 body {
-    padding-top: 45px;
+    padding-top: 50px;
     margin: 0;
     font-family: Aharoni, "Aharoni Bold", sans-serif;
     background: #ffffff;
@@ -21,47 +21,6 @@ h2 {
 .whitespace {
     font-size: 0.7rem;
     color: transparent;
-}
-
-.top-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#0f172a;
-    padding:12px 20px;
-
-    z-index:9999;
-}
-
-.brand {
-    text-align: left;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color:white;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 16px;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-}
-
-.menu-toggle{
-    display:none;
 }
 
 .dashboard {
@@ -81,7 +40,7 @@ h2 {
 
     background-image:
         linear-gradient(rgba(207, 216, 233, 0.900), rgba(247, 250, 255, 0.900)),
-        url("../Images/parentBackground/waterDrops.gif");
+        url("../../Images/parentBackground/waterDrops.gif");
     
     background-size: cover;
     background-position: center;
@@ -198,7 +157,7 @@ h2 {
 
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.490), rgba(255, 255, 255, 0.490)),
-        url("../Images/parentBackground/rainDrops.gif");
+        url("../../Images/parentBackground/rainDrops.gif");
     
     background-size: cover;
     background-position: center;
@@ -276,7 +235,7 @@ h2 {
 
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
-        url("../Images/suspension/classSuspension.jpg");
+        url("../../Images/suspension/classSuspension.jpg");
 
     opacity: .9;
     background-size: cover;
@@ -295,7 +254,7 @@ h2 {
 
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.750), rgba(0, 0, 0, 0.750)),
-        url("../Images/suspension/workSuspension.jpeg");
+        url("../../Images/suspension/workSuspension.jpeg");
     
     opacity: .9;
     background-size: cover;
@@ -342,7 +301,7 @@ h2 {
 .class-suspension-stats,
 .work-suspension-stats {
     display: flex;
-    gap: 12px;
+    gap: 5px;
     flex-wrap: nowrap;
     align-items: stretch;
     width: 100%;
@@ -376,12 +335,12 @@ h2 {
     background: rgba(255, 255, 255, 0.900);
     border: 1px solid rgb(255, 160, 44);
     border-radius: 10px;
-    padding: 8px;
+    padding: 5px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 6px;
+    gap: 5px;
     min-height: 0;
 }
 
@@ -414,7 +373,7 @@ h2 {
 .school-levels-stats,
 .work-levels-stats {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     flex-wrap: nowrap;
     margin-top: 8px;
     width: 100%;
@@ -778,7 +737,7 @@ h2 {
 
     background-image:
     linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
-    url("../Images/effectsToInfra/impassableRoadBG.png");
+    url("../../Images/effectsToInfra/impassableRoadBG.png");
     
     opacity: 100%;
     background-size: cover;
@@ -812,7 +771,7 @@ h2 {
     background: #eef4ff;
     border: 1.5px solid #3c3d3dcb;
     border-radius: 10px;
-    padding: 6px;
+    padding: 10px;
     min-height: 50px;
     display: flex;
     flex-direction: row;
@@ -822,7 +781,7 @@ h2 {
 
     background-image:
     linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
-    url("../Images/effectsToInfra/impassableBridgeBG.jpg");
+    url("../../Images/effectsToInfra/impassableBridgeBG.jpg");
 
     opacity: 100%;
     background-size: cover;
@@ -864,6 +823,7 @@ h2 {
     margin: 0;
 }
 
+/*Interactivity of photo gallary if condition is met*/
 .infrastructure-figure-card{
     cursor: default;
     transition: .3s;
@@ -1023,7 +983,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(255, 148, 228, 0.6);
+    background: #ff94e499;
     border: 1px solid #3c3d3dcb;
     border-radius: 10px;
     padding: 10px;
@@ -1072,8 +1032,8 @@ h2 {
     display: block;
     object-fit: contain;
     border-radius: 22px;
-    min-height: 0px;
-    min-width: 0px;
+    min-height: 50px;
+    min-width: 50px;
     padding: 4px;
     overflow: hidden;
 }
@@ -1142,15 +1102,37 @@ h2 {
 }
 
 @media (max-width: 700px) {
+    .incident-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sumarry-content {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .fourth-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .power-interruption,
+    .network-service,
+    .water-service,
+    .effects-infrastructure {
+        width: min(100%, 400px);
+    }
+
     .incident-card--with-gif {
         flex-direction: column;
         align-items: stretch;
     }
 
     .incident-card-gif {
-        width: 100%;
-        max-width: 100%;
-        border-radius: 22px;
+        border-radius: 24px;
+        align-self: center;
     }
 
     .effects-grid {
@@ -1206,63 +1188,6 @@ h2 {
     }
 }
 
-@media (max-width: 700px) {
-    .menu-toggle{
-        display:block;
-        font-size:1.8rem;
-        background:none;
-        border:none;
-        color:white;
-        cursor:pointer;
-    }
-
-    .nav-links{
-        display:none;
-        flex-direction:column;
-        position:absolute;
-        top:100%;
-        left:0;
-        width:100%;
-        background:#0f172a75;
-        padding:2px 0 6px;
-    }
-
-    .nav-links.active{
-        display:flex;
-    }
-
-    .nav-links li{
-        text-align:right;
-        padding-right: 22px;
-        border-bottom:1px solid rgba(255,255,255,.15);
-    }
-    .nav-links li:last-child{
-        border-bottom:none;
-    }
-
-    .incident-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .sumarry-content {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .fourth-row {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .power-interruption,
-    .network-service,
-    .water-service,
-    .effects-infrastructure {
-        width: min(100%, 400px);
-    }
-}
 
 @keyframes radiate{
     0%{
