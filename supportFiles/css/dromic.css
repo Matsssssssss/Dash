@@ -5,12 +5,14 @@
 }
 
 body {
+    padding-top: 1px;
     margin: 0;
     font-family: Aharoni, "Aharoni Bold", sans-serif;
     background: #ffffff;
     color: #000000;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 h2 {
@@ -28,6 +30,7 @@ h2 {
     background: #1a2b52d7;
 }
 
+
 .sumarry-reports {
 
     background-image:
@@ -39,8 +42,20 @@ h2 {
     background-repeat: no-repeat;
     min-height: 1000px;
 }
+/*
+#iMap{
+    width:100%;
+    height:700px;
+    border-bottom-left-radius:12px;
+    border-bottom-right-radius:12px;
+    margin-top: 50px;
+    padding: 50px;
+}
 
-
+path:focus {
+    outline: none;
+}
+*/
 
 @media (max-width: 900px) {
     
