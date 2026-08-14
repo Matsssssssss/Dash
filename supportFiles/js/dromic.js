@@ -49,7 +49,7 @@ L.tileLayer(
     "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
     //"https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
     {
-        maxZoom:15,
+        maxZoom:20,
         attribution:"© Humanitarian OpenStreetMap Team"
     }
 ).addTo(map);
@@ -156,7 +156,6 @@ async function fetchTrackStarVehicles() {
             data
         );
 
-
         // Validate API response
         if (!data.success) {
             throw new Error(
@@ -169,7 +168,6 @@ async function fetchTrackStarVehicles() {
             throw new Error(
                 "TrackStar API returned an invalid vehicles array."
             );
-
         }
 
         console.log (
@@ -185,6 +183,140 @@ async function fetchTrackStarVehicles() {
             error
         );
         return [];
+    }
+}
+
+
+// TRACKSTAR VEHICLE ICONS
+// Custom Pickup icon
+const TRACKSTAR_VEHICLE_ICONS = {
+
+    Pickup: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/pickup.svg",
+        iconSize: [40, 40],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Grader: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/grader.svg",
+        iconSize: [50, 50],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Loader: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/loader.svg",
+        iconSize: [50, 50],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Backhoe_Loader: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/backhoe_loader.svg",
+        iconSize: [50, 50],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Compactor: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/compactor.svg",
+        iconSize: [50, 50],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    SUV: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/suv.svg",
+        iconSize: [40, 40],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Bus: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/bus.svg",
+        iconSize: [50, 50],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Tanker_Truck: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/tanker_truck.svg",
+        iconSize: [55, 70],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    })
+};
+
+
+// DEFAULT TRACKSTAR ICON
+const TRACKSTAR_DEFAULT_ICON = L.icon({
+
+    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+    iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+// GET TRACKSTAR VEHICLE ICON
+function getTrackStarVehicleIcon(vehicle) {
+
+    const vehicleType =
+        String(
+            vehicle.vehicleType || ""
+        ).trim();
+
+    console.log(
+        "SELECTING ICON:",
+        vehicleType
+    );
+
+    switch (vehicleType) {
+
+        // PICKUP
+        case "Pickup":
+            return TRACKSTAR_VEHICLE_ICONS.Pickup;
+        
+        // GRADER
+        case "Grader":
+            return TRACKSTAR_VEHICLE_ICONS.Grader;
+
+        // LOADER
+        case "Loader":
+            return TRACKSTAR_VEHICLE_ICONS.Loader;
+
+        // BACKHOE LOADER
+        case "BACK HOE LOADER":
+            return TRACKSTAR_VEHICLE_ICONS.Backhoe_Loader;
+
+        // COMPACTOR
+        case "Compactor":
+            return TRACKSTAR_VEHICLE_ICONS.Compactor;
+
+        // SUV
+        case "SUV":
+            return TRACKSTAR_VEHICLE_ICONS.SUV;
+
+        // BUS
+        case "Bus":
+            return TRACKSTAR_VEHICLE_ICONS.Bus;
+
+        // TANKER TRUCK
+        case "TankerTruck":
+            return TRACKSTAR_VEHICLE_ICONS.Tanker_Truck;
+
+        // FALLBACK
+        default:
+
+            console.warn(
+                "No custom icon for vehicle type:",
+                vehicleType,
+                "Using default TrackStar icon."
+            );
+            return TRACKSTAR_DEFAULT_ICON;
     }
 }
 
@@ -206,11 +338,16 @@ function createTrackStarMarker(vehicle) {
         return null;
     }
 
-    const marker =
-        L.marker([
+    const icon = getTrackStarVehicleIcon(vehicle);
+    const marker = L.marker(
+        [
             Number(vehicle.lat),
             Number(vehicle.lng)
-        ]);
+        ],
+        {
+            icon: icon
+        }
+    );
 
     marker.bindPopup(`
         <div class="trackstar-popup">
@@ -566,5 +703,4 @@ function stopTrackStarAutoUpdate() {
     console.log(
         "TRACKSTAR AUTO UPDATE STOPPED."
     );
-}
-*/
+}*/
