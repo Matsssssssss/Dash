@@ -30,7 +30,7 @@ h2 {
     background: #1a2b52d7;
 }
 
-/*
+
 .sumarry-reports {
 
     background-image:
@@ -41,8 +41,9 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
     min-height: 1000px;
-}*/
+}
 
+/*
 #iMap{
     width:100%;
     height:700px;
@@ -50,7 +51,7 @@ h2 {
     border-bottom-right-radius:12px;
     margin-top: 50px;
     padding: 50px;
-}
+}*/
 
 path:focus {
     outline: none;

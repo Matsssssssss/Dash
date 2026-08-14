@@ -19,7 +19,7 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
 });
 });
 
-
+/*
 //Map Localization
 const map = L.map("iMap", {
     zoomControl:true,
@@ -746,4 +746,4 @@ function stopTrackStarAutoUpdate() {
     console.log(
         "TRACKSTAR AUTO UPDATE STOPPED."
     );
-}
+}*/
