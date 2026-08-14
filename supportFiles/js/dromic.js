@@ -19,7 +19,7 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
 });
 });
 
-/*
+
 //Map Localization
 const map = L.map("iMap", {
     zoomControl:true,
@@ -245,6 +245,34 @@ const TRACKSTAR_VEHICLE_ICONS = {
         iconSize: [55, 70],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
+    }),
+
+    Truck: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/truck.svg",
+        iconSize: [30, 30],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Dumper_Truck: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/dumper_truck.svg",
+        iconSize: [30, 30],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Default: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/default.svg",
+        iconSize: [30, 30],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
+    }),
+
+    Head_Unit: L.icon({
+        iconUrl: "../../Images/Assets/Vehicles/default.svg",
+        iconSize: [30, 30],
+        iconAnchor: [18, 18],
+        popupAnchor: [0, -21]
     })
 };
 
@@ -307,6 +335,21 @@ function getTrackStarVehicleIcon(vehicle) {
         // TANKER TRUCK
         case "TankerTruck":
             return TRACKSTAR_VEHICLE_ICONS.Tanker_Truck;
+
+        // TRUCK
+        case "Truck":
+            return TRACKSTAR_VEHICLE_ICONS.Truck;
+
+        // DUMPER TRUCK
+        case "DUMPER":
+            return TRACKSTAR_VEHICLE_ICONS.Dumper_Truck;
+
+        // DEFAULT
+        case "Default":
+            return TRACKSTAR_VEHICLE_ICONS.Default;
+        // HEAD UNIT
+        case "HeadUnit":
+            return TRACKSTAR_VEHICLE_ICONS.Head_Unit;
 
         // FALLBACK
         default:
@@ -703,4 +746,4 @@ function stopTrackStarAutoUpdate() {
     console.log(
         "TRACKSTAR AUTO UPDATE STOPPED."
     );
-}*/
+}
