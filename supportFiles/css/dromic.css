@@ -42,27 +42,327 @@ h2 {
     background-repeat: no-repeat;
     min-height: 1000px;
 }
-
 /*
+.map-interface {
+    display: flex;
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+/*VEHICLE SIDEBAR
+.vehicle-sidebar {
+    margin-top: 49px;
+    width: 280px;
+    min-width: 280px;
+    height: 100%;
+    background: #ffffff;
+    border-right: 1px solid #dcdcdc;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.vehicle-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.vehicle-sidebar-header h3 {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+#vehicleCount {
+    min-width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #1a2b52;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/*VEHICLE SEARCH
+.vehicle-search {
+    padding: 10px;
+}
+
+.vehicle-search input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+.vehicle-search input:focus {
+    border-color: #1a2b52;
+}
+
+/*VEHICLE FILTERS
+.vehicle-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 10px 10px;
+}
+
+.vehicle-filters select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d5d5d5;
+    border-radius: 6px;
+    background: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/*VISIBILITY CONTROLS
+.vehicle-visibility-controls {
+    display: flex;
+    gap: 6px;
+    padding: 0 10px 10px;
+}
+
+.vehicle-visibility-controls button {
+    flex: 1;
+    padding: 8px 5px;
+    border: none;
+    border-radius: 6px;
+    background: #1a2b52;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.vehicle-visibility-controls button:hover {
+    opacity: 0.85;
+}
+
+/*VEHICLE LIST
+.vehicle-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 5px 10px 10px;
+}
+
+/*VEHICLE LIST DESIGN
+.vehicle-list-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    background: #f5f6f8;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.vehicle-list-item:hover {
+    background: #e8ebf0;
+}
+
+.vehicle-list-item-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle-list-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.vehicle-list-item-name {
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vehicle-list-item-details {
+    margin-top: 2px;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+
+/*this section is for the map integration
 #iMap{
     width:100%;
     height:700px;
     border-bottom-left-radius:12px;
     border-bottom-right-radius:12px;
-    margin-top: 50px;
+    margin-top: 49px;
     padding: 50px;
-}*/
+}
 
 path:focus {
     outline: none;
 }
 
 
+/* TRACKSTAR VEHICLE POPUP 
+.trackstar-popup {
+    width: clamp(100px, 180px, 250px);
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER 
+.trackstar-popup-header {
+    margin-bottom: 10px;
+}
+
+.trackstar-popup-title {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-bottom: 1px solid #ddd;
+}
+
+.trackstar-popup-title strong {
+    font-size: 16px;
+}
+
+.trackstar-popup-title span {
+    font-size: 12px;
+    opacity: 0.65;
+    text-transform: uppercase;
+}
+
+/* STATUS ROW
+.trackstar-popup-status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 12px;
+}
+.vehicle-branchName {
+    font-family: Arial, sans-serif;
+    font-size: clamp(0.5rem, 0.7rem, 1rem);
+}
+
+/*vehicle status case
+.status-inactive {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ff0000;
+}
+.status-running {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+.status-stopped {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #202220;
+}
+.status-idle {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #c5c222;
+}
+
+/* DATA 
+.trackstar-popup-data {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+.trackstar-data-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.trackstar-data-row span {
+    opacity: 0.65;
+}
+
+.trackstar-data-row strong {
+    text-align: right;
+}
+
+/* LOCATION 
+.trackstar-popup-location {
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.trackstar-section-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}*/
+
+/* FOOTER 
+.trackstar-popup-footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #ddd;
+    font-size: 10px;
+    opacity: 0.6;
+}*/
+
+
 @media (max-width: 900px) {
-    
+    .map-interface {
+        height: 650px;
+    }
+
+    .vehicle-sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
 }
 
 
 @media (max-width: 700px) {
-    
+    .map-interface {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .vehicle-sidebar {
+        width: 100%;
+        min-width: 100%;
+        height: 300px;
+        border-right: none;
+        border-bottom: 1px solid #dcdcdc;
+    }
+
+    #iMap {
+        width: 100%;
+        height: 600px;
+    }
 }

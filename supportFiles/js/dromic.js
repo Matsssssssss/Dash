@@ -111,9 +111,13 @@ const trackStarVehicleLayer = L.layerGroup();
 trackStarVehicleLayer.addTo(map);
 
 //refresh TrackStar vehicles every 30 seconds
+const TRACKSTAR_UPDATE_INTERVAL = 30000; // 30 seconds
+
 // TRACKSTAR AUTO UPDATE CONFIGURATION
-const TRACKSTAR_UPDATE_INTERVAL = 10000; // 30 seconds
 let trackStarUpdateTimer = null;
+
+// TRACKSTAR VEHICLE DATA STORE
+let trackStarVehicles = [];
 
 // Store existing markers by vehicle ID
 const trackStarMarkers = new Map();
@@ -185,7 +189,6 @@ async function fetchTrackStarVehicles() {
         return [];
     }
 }
-
 
 // TRACKSTAR VEHICLE ICONS
 // Custom Pickup icon
@@ -276,7 +279,6 @@ const TRACKSTAR_VEHICLE_ICONS = {
     })
 };
 
-
 // DEFAULT TRACKSTAR ICON
 const TRACKSTAR_DEFAULT_ICON = L.icon({
 
@@ -363,6 +365,145 @@ function getTrackStarVehicleIcon(vehicle) {
     }
 }
 
+//status class function
+function getTrackStarStatusClass(vehicle) {
+
+    const status = String(vehicle.status || "").trim().toLowerCase();
+
+    switch (status) {
+        case "inActive":
+            return "status-inactive";
+
+        case "running":
+            return "status-running";
+
+        case "stopped":
+            return "status-stopped";
+
+        case "idle":
+            return "status-idle";
+
+        default:
+            return "status-inactive";
+    }
+}
+
+// TRACKSTAR POPUP GENERATOR
+function createTrackStarPopup(vehicle) {
+
+    const vehicleName = vehicle.objectName || vehicle.name || "Unknown Vehicle";
+    const vehicleType = vehicle.vehicleType || "Unknown Type";
+    const status = vehicle.status || "Unknown";
+    const branchName = vehicle.branchName || "Unknown Branch";
+    const speed = Number(vehicle.speed || 0);
+    const driver = vehicle.driver || "N/A";
+
+    const gps =
+        vehicle.gps ||
+        "Unknown";
+
+    const contact =
+        vehicle.simCardNo ||
+        "Unknown";
+
+    const location =
+        vehicle.location ||
+        "Unknown";
+
+    const lat =
+        Number(vehicle.lat);
+
+    const lng =
+        Number(vehicle.lng);
+
+    const coordinates =
+        Number.isFinite(lat) &&
+        Number.isFinite(lng)
+
+        ? `${lat.toFixed(6)}, ${lng.toFixed(6)}`
+
+        : "Unavailable";
+
+
+    return `
+
+        <div class="trackstar-popup">
+
+            <!-- VEHICLE HEADER -->
+            <div class="trackstar-popup-header">
+                <div class="trackstar-popup-title">
+                    <strong>
+                        ${vehicleName}
+                    </strong>
+                    <span>
+                        ${vehicleType}
+                    </span>
+                </div>
+            </div>
+
+            <!-- STATUS -->
+            <div class="trackstar-popup-status">
+                <span class="${getTrackStarStatusClass(vehicle)}"></span>
+                <strong>
+                    ${status}
+                </strong>
+                <span class = "vehicle-branchName">
+                    ${branchName}
+                </span>
+            </div>
+
+            <!-- VEHICLE DATA -->
+            <div class="trackstar-popup-data">
+                <div class="trackstar-data-row">
+                    <span>
+                        Speed
+                    </span>
+                    <strong>
+                        ${speed} km/h
+                    </strong>
+                </div>
+
+                <div class="trackstar-data-row">
+                    <span>
+                        Driver
+                    </span>
+                    <strong>
+                        ${driver}
+                    </strong>
+                </div>
+
+                <div class="trackstar-data-row">
+                    <span>
+                        GPS
+                    </span>
+                    <strong>
+                        ${gps}
+                    </strong>
+                </div>
+
+
+                <div class="trackstar-data-row">
+                    <span>
+                        Contact
+                    </span>
+                    <strong>
+                        ${contact}
+                    </strong>
+                </div>
+            </div>
+
+            <!-- LOCATION -->
+            <div class="trackstar-popup-location">
+                <div class="trackstar-section-title">
+                    Location
+                </div>
+                <div>
+                    ${location}
+                </div>
+            </div>
+    `;
+}
+
 // CREATE VEHICLE MARKER
 function createTrackStarMarker(vehicle) {
 
@@ -372,72 +513,34 @@ function createTrackStarMarker(vehicle) {
         vehicle.lat === undefined ||
         vehicle.lng === undefined
     ) {
-
+    
         console.warn(
             "Vehicle has no valid coordinates:",
             vehicle
         );
-
         return null;
     }
 
-    const icon = getTrackStarVehicleIcon(vehicle);
-    const marker = L.marker(
-        [
-            Number(vehicle.lat),
-            Number(vehicle.lng)
-        ],
-        {
-            icon: icon
-        }
+    const icon =
+        getTrackStarVehicleIcon(vehicle);
+
+    const marker =
+        L.marker(
+            [
+                Number(vehicle.lat),
+                Number(vehicle.lng)
+            ],
+            {
+                icon: icon
+            }
+        );
+
+    marker.bindPopup(
+        createTrackStarPopup(vehicle)
     );
 
-    marker.bindPopup(`
-        <div class="trackstar-popup">
-            <strong>
-                ${vehicle.objectName || "Unknown Vehicle"}
-            </strong>
-
-            <br>
-
-            <span>
-                ${vehicle.vehicleType || ""}
-            </span>
-
-            <hr>
-
-            <strong>Status:</strong>
-            ${vehicle.status || "Unknown"}
-
-            <br>
-
-            <strong>Speed:</strong>
-            ${vehicle.speed || 0} km/h
-
-            <br>
-
-            <strong>Driver:</strong>
-            ${vehicle.driver || "N/A"}
-
-            <br>
-
-            <strong>GPS:</strong>
-            ${vehicle.gps || "Unknown"}
-
-            <br>
-
-            <strong>Contact:</strong>
-            ${vehicle.simCardNo || "Unknown"}
-
-            <br>
-
-            <strong>Location:</strong>
-            ${vehicle.location || "Unknown"}
-        </div>
-    `);
     return marker;
 }
-
 
 // UPDATE EXISTING TRACKSTAR MARKER
 function updateTrackStarMarker(marker, vehicle) {
@@ -446,10 +549,11 @@ function updateTrackStarMarker(marker, vehicle) {
         return;
     }
 
-    const lat = Number(vehicle.lat);
-    const lng = Number(vehicle.lng);
+    const lat =
+        Number(vehicle.lat);
+    const lng =
+        Number(vehicle.lng);
 
-    // Validate coordinates
     if (
         !Number.isFinite(lat) ||
         !Number.isFinite(lng)
@@ -458,9 +562,9 @@ function updateTrackStarMarker(marker, vehicle) {
             "Invalid coordinates for vehicle:",
             vehicle.objectName
         );
+
         return;
     }
-
     // Move marker
     marker.setLatLng([
         lat,
@@ -468,56 +572,9 @@ function updateTrackStarMarker(marker, vehicle) {
     ]);
 
     // Update popup
-    marker.setPopupContent(`
-        <div class="trackstar-popup">
-
-            <strong>
-                ${vehicle.objectName || "Unknown Vehicle"}
-            </strong>
-
-            <br>
-
-            <span>
-                ${vehicle.vehicleType || ""}
-            </span>
-
-            <hr>
-
-            <strong>Status:</strong>
-            ${vehicle.status || "Unknown"}
-
-            <br>
-
-            <strong>Speed:</strong>
-            ${vehicle.speed || 0} km/h
-
-            <br>
-
-            <strong>Driver:</strong>
-            ${vehicle.driver || "N/A"}
-
-            <br>
-
-            <strong>GPS:</strong>
-            ${vehicle.gps || "Unknown"}
-
-            <br>
-
-            <strong>Contact:</strong>
-            ${vehicle.simCardNo || "Unknown"}
-
-            <br>
-
-            <strong>Location:</strong>
-            ${vehicle.location || "Unknown"}
-
-            <br>
-
-            <strong>Updated:</strong>
-            ${vehicle.actualTime || "Unknown"}
-
-        </div>
-    `);
+    marker.setPopupContent(
+        createTrackStarPopup(vehicle)
+    );
 }
 
 //show all vehicles on map
@@ -550,8 +607,9 @@ async function updateAllTrackStarVehicles() {
         );
 
         // Fetch latest vehicle data
-        const vehicles =
-            await fetchTrackStarVehicles();
+        const vehicles = await fetchTrackStarVehicles();
+        trackStarVehicles = vehicles;
+        renderTrackStarVehicleList();
 
         if (!Array.isArray(vehicles)) {
 
@@ -683,7 +741,6 @@ async function updateAllTrackStarVehicles() {
     }
 }
 
-
 // START TRACKSTAR AUTO UPDATE
 function startTrackStarAutoUpdate() {
 
@@ -745,5 +802,256 @@ function stopTrackStarAutoUpdate() {
 
     console.log(
         "TRACKSTAR AUTO UPDATE STOPPED."
+    );
+}
+
+function renderTrackStarVehicleList() {
+
+    const list =
+        document.getElementById(
+            "vehicleList"
+        );
+
+    const count =
+        document.getElementById(
+            "vehicleCount"
+        );
+
+    if (!list) {
+        return;
+    }
+
+    list.innerHTML = "";
+
+    count.textContent =
+        trackStarVehicles.length;
+
+    trackStarVehicles.forEach(function(vehicle) {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "vehicle-list-item";
+
+        item.dataset.vehicleId =
+            vehicle.id;
+
+        item.innerHTML = `
+            <div class="vehicle-list-info">
+                <strong>
+                    ${vehicle.objectName || "Unknown Vehicle"}
+                </strong>
+
+                <span>
+                    ${vehicle.vehicleType || ""}
+                </span>
+            </div>
+        `;
+        list.appendChild(item);
+
+        item.innerHTML = `
+            <div class="vehicle-list-status">
+                <span
+                    class="${getTrackStarStatusClass(vehicle)}"
+                ></span>
+            </div>
+
+            <div class="vehicle-list-info">
+                <strong>
+                    ${vehicle.objectName || "Unknown Vehicle"}
+                </strong>
+
+                <span>
+                    ${vehicle.vehicleType || ""}
+                </span>
+            </div>
+        `;
+    });
+}
+
+//vehicle search
+function filterTrackStarVehicles() {
+
+    const search =
+        document
+            .getElementById("vehicleSearch")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const results =
+        trackStarVehicles.filter(function(vehicle) {
+
+            return (
+                vehicle.objectName
+                    ?.toLowerCase()
+                    .includes(search) ||
+
+                vehicle.name
+                    ?.toLowerCase()
+                    .includes(search) ||
+
+                vehicle.imei
+                    ?.toLowerCase()
+                    .includes(search)
+            );
+        });
+    renderFilteredVehicleList(results);
+}
+
+document.getElementById("vehicleSearch").addEventListener("input", filterTrackStarVehicles);
+
+//vehicleType filter
+function populateVehicleTypeFilter() {
+
+    const select =
+        document.getElementById(
+            "vehicleTypeFilter"
+        );
+
+    const types =
+        [
+            ...new Set(
+                trackStarVehicles
+                    .map(vehicle =>
+                        vehicle.vehicleType
+                    )
+                    .filter(Boolean)
+            )
+        ]
+        .sort();
+
+    select.innerHTML = `
+        <option value="all">
+            All Vehicle Types
+        </option>
+    `;
+
+    types.forEach(function(type) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = type;
+        option.textContent = type;
+
+        select.appendChild(option);
+    });
+}
+
+//branch filter
+function populateBranchFilter() {
+
+    const select =
+        document.getElementById(
+            "branchFilter"
+        );
+
+    const branches =
+        [
+            ...new Set(
+                trackStarVehicles
+                    .map(vehicle =>
+                        vehicle.branchName
+                    )
+                    .filter(Boolean)
+            )
+        ]
+        .sort();
+
+    select.innerHTML = `
+        <option value="all">
+            All Branches
+        </option>
+    `;
+
+    branches.forEach(function(branch) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = branch;
+        option.textContent = branch;
+        select.appendChild(option);
+    });
+}
+
+//status filter
+function populateStatusFilter() {
+
+    const select =
+        document.getElementById(
+            "statusFilter"
+        );
+
+    const statuses =
+        [
+            ...new Set(
+                trackStarVehicles
+                    .map(vehicle =>
+                        vehicle.status
+                    )
+                    .filter(Boolean)
+            )
+        ]
+        .sort();
+
+    select.innerHTML = `
+        <option value="all">
+            All Statuses
+        </option>
+    `;
+
+    statuses.forEach(function(status) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = status;
+        option.textContent = status;
+        select.appendChild(option);
+    });
+}
+
+//combine everything in the sidebar
+function getFilteredTrackStarVehicles() {
+
+    const search =document.getElementById("vehicleSearch").value.trim().toLowerCase();
+    const type = document.getElementById("vehicleTypeFilter").value;
+    const branch = document.getElementById("branchFilter").value;
+    const status = document.getElementById("statusFilter").value;
+
+    return trackStarVehicles.filter(
+        function(vehicle) {
+
+            const matchesSearch =
+                !search ||
+                vehicle.objectName
+                    ?.toLowerCase()
+                    .includes(search) ||
+                vehicle.imei
+                    ?.toLowerCase()
+                    .includes(search);
+
+            const matchesType =
+                type === "all" ||
+                vehicle.vehicleType === type;
+
+            const matchesBranch =
+                branch === "all" ||
+                vehicle.branchName === branch;
+
+            const matchesStatus =
+                status === "all" ||
+                vehicle.status === status;
+
+            return (
+                matchesSearch &&
+                matchesType &&
+                matchesBranch &&
+                matchesStatus
+            );
+        }
     );
 }*/
