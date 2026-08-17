@@ -1,4 +1,4 @@
-This is a live data feeding for typhoon dashboard that visualizzation of data figures and can be use for helping the executives for their decision making, faster actions, and boosting the effectiveness of operations. 
+This is a live data feeding for typhoon dashboard that visualization of data figures and can be use for helping the executives for their decision making, faster actions, and boosting the effectiveness of operations. 
 
 Process Flow:
 {
