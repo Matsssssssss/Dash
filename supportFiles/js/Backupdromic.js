@@ -20,6 +20,9 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
 });
 
 
+//THIS IS THE VERSION WHERE THE SIDEBAR INTERACTIBILITY JUST COMPLETED - "except for the show/hide all"
+
+
 //Map Localization
 const map = L.map("iMap", {
     zoomControl:true,
@@ -82,7 +85,7 @@ function reset(e) {
 let geoJSON;
 
 //municipal boundaries from rukku "github" repository
-fetch("data/ILOILO.geojson")
+fetch("data/iloilo.geojson")
     .then(response => response.json())
     .then(data=>{
 
@@ -124,8 +127,6 @@ const trackStarMarkers = new Map();
 
 // TRACKSTAR VEHICLE DATA REGISTRY
 const trackStarVehicle = new Map();
-//selected vehicle variable
-let selectedTrackStarVehicleId = null;
 let trackStarUpdating = false;
 
 console.log(
@@ -640,87 +641,6 @@ function renderVehicleList() {
     });
 }
 
-
-// SELECT VEHICLE FROM SIDEBAR
-function selectTrackStarVehicle(vehicleId) {
-
-    vehicleId = String(vehicleId);
-
-    console.log("========================================");
-    console.log("SELECTING TRACKSTAR VEHICLE");
-    console.log("VEHICLE ID:", vehicleId);
-    // GET VEHICLE DATA
-    const vehicle = trackStarVehicle.get(vehicleId);
-
-    if (!vehicle) {
-
-        console.warn("Vehicle data not found:", vehicleId);
-        console.log("Available vehicle IDs:", Array.from(trackStarVehicle.keys()));
-        return;
-    }
-
-    console.log("VEHICLE FOUND:", vehicle);
-
-    // GET MARKER
-    const marker = trackStarMarkers.get(vehicleId);
-    if (!marker) {
-
-        console.warn(
-            "Vehicle marker not found:",
-            vehicleId
-        );
-
-        console.log(
-            "Available marker IDs:",
-            Array.from(trackStarMarkers.keys())
-        );
-        return;
-    }
-
-    console.log("MARKER FOUND:", marker);
-
-    // SAVE SELECTED VEHICLE
-    selectedTrackStarVehicleId = vehicleId;
-
-    // REMOVE PREVIOUS SELECTION
-    document
-        .querySelectorAll(".vehicle-list-item")
-        .forEach(function(item) {
-
-            item.classList.remove("selected");
-        });
-
-    // HIGHLIGHT SELECTED SIDEBAR ITEM
-    const selectedItem =
-        document.querySelector(
-            `.vehicle-list-item[data-vehicle-id="${vehicleId}"]`
-        );
-
-    if (selectedItem) {
-
-        selectedItem.classList.add("selected");
-
-        // Optional: automatically scroll item
-        selectedItem.scrollIntoView({behavior: "smooth", block: "nearest"});
-    }
-
-    // OPEN POPUP
-    marker.openPopup();
-
-    // OPTIONAL: CENTER MAP
-    /*
-    map.setView(
-        marker.getLatLng(),
-        16,
-        {
-            animate: true
-        }
-    );*/
-
-    console.log("VEHICLE SELECTED SUCCESSFULLY:", vehicle.objectName);
-    console.log("========================================");
-}
-
 function getVehicleStatusClass(status) {
 
     if (!status) {return "inactive";}
@@ -1069,48 +989,6 @@ async function updateAllTrackStarVehicles() {
     }
 }
 
-// TRACKSTAR VEHICLE VISIBILITY CONTROLS
-// SHOW ALL VEHICLES
-function showAllTrackStarVehicles() {
-
-    console.log(
-        "SHOWING ALL TRACKSTAR VEHICLES"
-    );
-
-    trackStarMarkers.forEach(function(marker) {
-
-        if (!trackStarVehicleLayer.hasLayer(marker)) {
-            trackStarVehicleLayer.addLayer(marker);
-        }
-    });
-
-    console.log(
-        "VISIBLE VEHICLES:",
-        trackStarMarkers.size
-    );
-}
-
-// HIDE ALL VEHICLES
-function hideAllTrackStarVehicles() {
-
-    console.log(
-        "HIDING ALL TRACKSTAR VEHICLES"
-    );
-
-    trackStarMarkers.forEach(function(marker) {
-
-        if (trackStarVehicleLayer.hasLayer(marker)) {
-            trackStarVehicleLayer.removeLayer(marker);
-        }
-    });
-
-    console.log(
-        "VISIBLE VEHICLES:",
-        trackStarVehicleLayer.getLayers().length
-    );
-}
-
-
 // START TRACKSTAR AUTO UPDATE
 function startTrackStarAutoUpdate() {
 
@@ -1178,43 +1056,48 @@ function stopTrackStarAutoUpdate() {
 function renderTrackStarVehicleList() {
 
     const list =
-        document.getElementById("vehicleList");
+        document.getElementById(
+            "vehicleList"
+        );
 
     const count =
-        document.getElementById("vehicleCount");
+        document.getElementById(
+            "vehicleCount"
+        );
 
     if (!list) {
-        console.warn("Vehicle list element not found.");
         return;
     }
 
     list.innerHTML = "";
-    count.textContent = trackStarVehicles.length;
 
-    if (trackStarVehicles.length === 0) {
-        list.innerHTML = `
-            <div class="vehicle-empty">
-                No vehicles found.
-            </div>
-        `;
-        return;
-    }
+    count.textContent =
+        trackStarVehicles.length;
 
     trackStarVehicles.forEach(function(vehicle) {
-        const vehicleId = String(vehicle.id);
-        const item = document.createElement("div");
-        item.className = "vehicle-list-item";
-        item.dataset.vehicleId = vehicleId;
 
-        // VEHICLE CLICK
-        item.addEventListener("click", function() 
-            {
-                console.log("SIDEBAR VEHICLE CLICK:", vehicleId);
-                selectTrackStarVehicle(vehicleId);
-            }
-        );
+        const item =
+            document.createElement("div");
 
-        // VEHICLE CONTENT
+        item.className =
+            "vehicle-list-item";
+
+        item.dataset.vehicleId =
+            vehicle.id;
+
+        item.innerHTML = `
+            <div class="vehicle-list-info">
+                <strong>
+                    ${vehicle.objectName || "Unknown Vehicle"}
+                </strong>
+
+                <span>
+                    ${vehicle.vehicleType || ""}
+                </span>
+            </div>
+        `;
+        list.appendChild(item);
+
         item.innerHTML = `
             <div class="vehicle-list-status">
                 <span
@@ -1228,15 +1111,10 @@ function renderTrackStarVehicleList() {
                 </strong>
 
                 <span>
-                    ${vehicle.vehicleType || "Unknown Type"}
+                    ${vehicle.vehicleType || ""}
                 </span>
-
-                <small>
-                    ${vehicle.branchName || "Unknown Branch"}
-                </small>
             </div>
         `;
-        list.appendChild(item);
     });
 }
 
@@ -1426,27 +1304,4 @@ function getFilteredTrackStarVehicles() {
     );
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-
-    // Initialize vehicle sidebar
-    initializeVehicleSidebar();
-
-    // Show All button
-    const showAllButton = document.getElementById("showAllVehicles");
-
-    if (showAllButton) {
-        showAllButton.addEventListener(
-            "click",
-            showAllTrackStarVehicles
-        );
-    }
-    // Hide All button
-    const hideAllButton = document.getElementById("hideAllVehicles");
-
-    if (hideAllButton) {
-        hideAllButton.addEventListener(
-            "click",
-            hideAllTrackStarVehicles
-        );
-    }
-});
+document.addEventListener("DOMContentLoaded", function() {initializeVehicleSidebar();});

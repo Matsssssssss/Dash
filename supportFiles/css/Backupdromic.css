@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+
+/*THIS IS THE VERSION WHERE THE SIDEBAR INTERACTIBILITY JUST COMPLETED - "except for the show/hide all"*/
+
+
 body {
     padding-top: 1px;
     margin: 0;
@@ -301,22 +305,6 @@ path:focus {
     border-top: 1px solid #ddd;
     font-size: 10px;
     opacity: 0.6;
-}
-
-.vehicle-list-item {
-    cursor: pointer;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.vehicle-list-item:hover {
-    background: #eef4ff;
-}
-
-.vehicle-list-item.selected {
-    background: #dbeafe;
-    border-left: 4px solid #2563eb;
 }
 
 
