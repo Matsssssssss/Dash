@@ -536,11 +536,15 @@ function createTrackStarMarker(vehicle) {
                 icon: icon
             }
         );
-
-    marker.bindPopup(
-        createTrackStarPopup(vehicle)
+    marker.bindPopup(createTrackStarPopup(vehicle)
     );
 
+    if (
+        selectedTrackStarVehicleId === String(vehicle.id)
+    ) {
+        
+    marker.on("add", function() {highlightTrackStarMarker(marker);});
+    }
     return marker;
 }
 
@@ -577,6 +581,13 @@ function updateTrackStarMarker(marker, vehicle) {
     marker.setPopupContent(
         createTrackStarPopup(vehicle)
     );
+
+    //Keep Selection
+    if (
+        selectedTrackStarVehicleId === String(vehicle.id)
+    ) {
+        highlightTrackStarMarker(marker);
+    }
 }
 
 //sidebar List

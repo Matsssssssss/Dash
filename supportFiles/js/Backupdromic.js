@@ -20,9 +20,6 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
 });
 
 
-//THIS IS THE VERSION WHERE THE SIDEBAR INTERACTIBILITY JUST COMPLETED - "except for the show/hide all"
-
-
 //Map Localization
 const map = L.map("iMap", {
     zoomControl:true,
@@ -67,7 +64,7 @@ function defaultStyle() {
     };
 }
 
-//map interactivity
+//sidebar interactivity highlighting
 function highlight(e) {
     e.target.setStyle(
     {
@@ -85,7 +82,7 @@ function reset(e) {
 let geoJSON;
 
 //municipal boundaries from rukku "github" repository
-fetch("data/iloilo.geojson")
+fetch("data/ILOILO.geojson")
     .then(response => response.json())
     .then(data=>{
 
@@ -127,6 +124,8 @@ const trackStarMarkers = new Map();
 
 // TRACKSTAR VEHICLE DATA REGISTRY
 const trackStarVehicle = new Map();
+//selected vehicle variable
+let selectedTrackStarVehicleId = null;
 let trackStarUpdating = false;
 
 console.log(
@@ -377,7 +376,7 @@ function getTrackStarStatusClass(vehicle) {
     const status = String(vehicle.status || "").trim().toLowerCase();
 
     switch (status) {
-        case "inActive":
+        case "inactive":
             return "status-inactive";
 
         case "running":
@@ -591,12 +590,13 @@ function renderVehicleList() {
     }
 
     const vehicles = getFilteredTrackStarVehicles();
-
     vehicleList.innerHTML = "";
-    vehicleCount.textContent = vehicles.length;
+
+    if (vehicleCount) {
+        vehicleCount.textContent = vehicles.length;
+    }
 
     if (vehicles.length === 0) {
-
         vehicleList.innerHTML = `
             <div class="vehicle-empty">
                 No vehicles found.
@@ -609,20 +609,34 @@ function renderVehicleList() {
 
         const vehicleId = String(vehicle.id);
         const vehicleItem = document.createElement("div");
-
         vehicleItem.className = "vehicle-list-item";
         vehicleItem.dataset.vehicleId = vehicleId;
 
-        const statusClass = getVehicleStatusClass(vehicle.status);
+        // SELECTED STATE
+        if (
+            selectedTrackStarVehicleId === vehicleId
+        ) {
+            vehicleItem.classList.add("selected");
+        }
 
+        // VEHICLE CLICK
+        vehicleItem.addEventListener("click", function()
+            {
+                console.log("SIDEBAR VEHICLE CLICK:", vehicleId);
+                selectTrackStarVehicle(vehicleId);
+            }
+        );
+
+        // VEHICLE CONTENT
         vehicleItem.innerHTML = `
-
-            <div class="
-                vehicle-list-status
-                status-${statusClass}
-            "></div>
+            <div class="vehicle-list-status">
+                <span
+                    class="${getTrackStarStatusClass(vehicle)}"
+                ></span>
+            </div>
 
             <div class="vehicle-list-info">
+
                 <strong>
                     ${vehicle.objectName || "Unknown Vehicle"}
                 </strong>
@@ -636,9 +650,93 @@ function renderVehicleList() {
                 </small>
             </div>
         `;
-
         vehicleList.appendChild(vehicleItem);
     });
+}
+
+
+// SELECT VEHICLE FROM SIDEBAR
+function selectTrackStarVehicle(vehicleId) {
+
+    vehicleId = String(vehicleId);
+
+    console.log("========================================");
+    console.log("SELECTING TRACKSTAR VEHICLE");
+    console.log("VEHICLE ID:", vehicleId);
+
+    // SAME VEHICLE CLICKED AGAIN → UNSELECT
+    if (selectedTrackStarVehicleId === vehicleId) {
+
+        console.log("SAME VEHICLE SELECTED AGAIN → UNSELECTING");
+        const marker = trackStarMarkers.get(vehicleId);
+
+        // Close popup
+        if (marker) {
+            marker.closePopup();
+        }
+
+        // Remove sidebar selection
+        document.querySelectorAll(".vehicle-list-item").forEach(function(item) {item.classList.remove("selected");});
+
+        // Clear selected vehicle
+        selectedTrackStarVehicleId = null;
+        console.log("VEHICLE UNSELECTED:", vehicleId);
+        console.log("========================================");
+        return;
+    }
+    
+
+    // GET VEHICLE DATA
+    const vehicle = trackStarVehicle.get(vehicleId);
+
+    if (!vehicle) {
+        console.warn("Vehicle data not found:", vehicleId);
+        console.log("Available vehicle IDs:", Array.from(trackStarVehicle.keys()));
+        return;
+    }
+    console.log("VEHICLE FOUND:", vehicle);
+
+    // GET MARKER
+    const marker = trackStarMarkers.get(vehicleId);
+
+    if (!marker) {
+        console.warn("Vehicle marker not found:", vehicleId);
+        console.log("Available marker IDs:", Array.from(trackStarMarkers.keys()));
+        return;
+    }
+
+    console.log("MARKER FOUND:", marker);
+
+    // REMOVE PREVIOUS SELECTION
+    document.querySelectorAll(".vehicle-list-item").forEach(function(item) {
+            item.classList.remove("selected");
+        });
+
+    // SAVE NEW SELECTION
+    selectedTrackStarVehicleId = vehicleId;
+
+    // HIGHLIGHT SIDEBAR ITEM
+    const selectedItem =document.querySelector(`.vehicle-list-item[data-vehicle-id="${vehicleId}"]`);
+
+    if (selectedItem) {
+        selectedItem.classList.add("selected");
+        selectedItem.scrollIntoView({behavior: "smooth", block: "nearest"});
+    }
+
+    // OPTIONAL: CENTER MAP
+    map.setView(
+        marker.getLatLng(),
+        14,
+        {
+            animate: true
+        }
+    );
+
+    // OPEN POPUP
+    marker.openPopup();
+
+    console.log("VEHICLE SELECTED SUCCESSFULLY:", vehicle.objectName);
+    console.log("========================================");
 }
 
 function getVehicleStatusClass(status) {
@@ -870,7 +968,6 @@ async function updateAllTrackStarVehicles() {
         // Fetch latest vehicle data
         const vehicles = await fetchTrackStarVehicles();
         trackStarVehicles = vehicles;
-        renderTrackStarVehicleList();
 
         if (!Array.isArray(vehicles)) {
 
@@ -989,6 +1086,48 @@ async function updateAllTrackStarVehicles() {
     }
 }
 
+// TRACKSTAR VEHICLE VISIBILITY CONTROLS
+// SHOW ALL VEHICLES
+function showAllTrackStarVehicles() {
+
+    console.log(
+        "SHOWING ALL TRACKSTAR VEHICLES"
+    );
+
+    trackStarMarkers.forEach(function(marker) {
+
+        if (!trackStarVehicleLayer.hasLayer(marker)) {
+            trackStarVehicleLayer.addLayer(marker);
+        }
+    });
+
+    console.log(
+        "VISIBLE VEHICLES:",
+        trackStarMarkers.size
+    );
+}
+
+// HIDE ALL VEHICLES
+function hideAllTrackStarVehicles() {
+
+    console.log(
+        "HIDING ALL TRACKSTAR VEHICLES"
+    );
+
+    trackStarMarkers.forEach(function(marker) {
+
+        if (trackStarVehicleLayer.hasLayer(marker)) {
+            trackStarVehicleLayer.removeLayer(marker);
+        }
+    });
+
+    console.log(
+        "VISIBLE VEHICLES:",
+        trackStarVehicleLayer.getLayers().length
+    );
+}
+
+
 // START TRACKSTAR AUTO UPDATE
 function startTrackStarAutoUpdate() {
 
@@ -1051,71 +1190,6 @@ function stopTrackStarAutoUpdate() {
     console.log(
         "TRACKSTAR AUTO UPDATE STOPPED."
     );
-}
-
-function renderTrackStarVehicleList() {
-
-    const list =
-        document.getElementById(
-            "vehicleList"
-        );
-
-    const count =
-        document.getElementById(
-            "vehicleCount"
-        );
-
-    if (!list) {
-        return;
-    }
-
-    list.innerHTML = "";
-
-    count.textContent =
-        trackStarVehicles.length;
-
-    trackStarVehicles.forEach(function(vehicle) {
-
-        const item =
-            document.createElement("div");
-
-        item.className =
-            "vehicle-list-item";
-
-        item.dataset.vehicleId =
-            vehicle.id;
-
-        item.innerHTML = `
-            <div class="vehicle-list-info">
-                <strong>
-                    ${vehicle.objectName || "Unknown Vehicle"}
-                </strong>
-
-                <span>
-                    ${vehicle.vehicleType || ""}
-                </span>
-            </div>
-        `;
-        list.appendChild(item);
-
-        item.innerHTML = `
-            <div class="vehicle-list-status">
-                <span
-                    class="${getTrackStarStatusClass(vehicle)}"
-                ></span>
-            </div>
-
-            <div class="vehicle-list-info">
-                <strong>
-                    ${vehicle.objectName || "Unknown Vehicle"}
-                </strong>
-
-                <span>
-                    ${vehicle.vehicleType || ""}
-                </span>
-            </div>
-        `;
-    });
 }
 
 //vehicle search
@@ -1304,4 +1378,27 @@ function getFilteredTrackStarVehicles() {
     );
 }
 
-document.addEventListener("DOMContentLoaded", function() {initializeVehicleSidebar();});
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Initialize vehicle sidebar
+    initializeVehicleSidebar();
+
+    // Show All button
+    const showAllButton = document.getElementById("showAllVehicles");
+
+    if (showAllButton) {
+        showAllButton.addEventListener(
+            "click",
+            showAllTrackStarVehicles
+        );
+    }
+    // Hide All button
+    const hideAllButton = document.getElementById("hideAllVehicles");
+
+    if (hideAllButton) {
+        hideAllButton.addEventListener(
+            "click",
+            hideAllTrackStarVehicles
+        );
+    }
+});
