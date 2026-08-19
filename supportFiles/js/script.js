@@ -31,18 +31,18 @@ function loadData()
         document.getElementById("flood_Incident").textContent = data.totalFlood;
         document.getElementById("rain_Induced_Landslide").textContent = data.totalLandslide;
         document.getElementById("mun_AffectedbyIncident_Total").textContent = data.totalIncidentMun;
-        document.getElementById("brgys_AffectedbyIncident_Total").textContent = data.totalIncidentBrgy;
+        document.getElementById("brgys_AffectedbyIncident_Total").textContent = Number(data.totalIncidentBrgy).toLocaleString("en-US", {maximumFractionDigits: 0});
 
-        document.getElementById("casualty").textContent = data.totalCasualty;
+        document.getElementById("casualty").textContent = Number(data.totalCasualty).toLocaleString("en-US", {maximumFractionDigits: 0});
         document.getElementById("mun_Affected").textContent = data.munAffected;
-        document.getElementById("brgy_Affected").textContent = data.brgyAffected;
-        document.getElementById("family_Affected").textContent = data.familiesAffected;
-        document.getElementById("persons_Affected").textContent = data.personsAffected;
+        document.getElementById("brgy_Affected").textContent = Number(data.brgyAffected).toLocaleString("en-US", {maximumFractionDigits: 0});
+        document.getElementById("family_Affected").textContent = Number(data.familiesAffected).toLocaleString("en-US", {maximumFractionDigits: 0});
+        document.getElementById("persons_Affected").textContent = Number(data.personsAffected).toLocaleString("en-US", {maximumFractionDigits: 0});
         document.getElementById("partially_Damaged_House").textContent = data.partiallyDamangedH;
         document.getElementById("totally_Damaged_House").textContent = data.totallyDamangedH;
         document.getElementById("evacuation_Center").textContent = data.evacCenterUtilized;
-        document.getElementById("persons_Inside_ECs").textContent = data.personsInsideEC;
-        document.getElementById("persons_Outside_ECs").textContent = data.personsOutsideEC;
+        document.getElementById("persons_Inside_ECs").textContent = Number(data.personsInsideEC).toLocaleString("en-US", {maximumFractionDigits: 0});
+        document.getElementById("persons_Outside_ECs").textContent = Number(data.personsOutsideEC).toLocaleString("en-US", {maximumFractionDigits: 0});
 
         document.getElementById("class_Suspend_Total").textContent = data.classSuspendMun;
         document.getElementById("primary_Total").textContent = data.primarySchools;
@@ -68,13 +68,13 @@ function loadData()
         document.getElementById("infra_Bridge").textContent = data.totalDamagedBridges;
 
         document.getElementById("sea_suspendOp").textContent = data.seaSuspension;
-        document.getElementById("sea_Passenger").textContent = data.seaPassengers;
+        document.getElementById("sea_Passenger").textContent = Number(data.seaPassengers).toLocaleString("en-US", {maximumFractionDigits: 0});
         document.getElementById("sea_Rolling_Cargo").textContent = data.seaCargoes;
         document.getElementById("sea_Vessels").textContent = data.seaVessels;
         document.getElementById("sea_MTBC").textContent = data.seaMTBC;
 
         document.getElementById("flight_Affected").textContent = data.flightCancelled;
-        document.getElementById("flight_Passenger").textContent = data.flightPassenger;
+        document.getElementById("flight_Passenger").textContent = Number(data.flightPassenger).toLocaleString("en-US", {maximumFractionDigits: 0});
 
         document.getElementById("dam_Level_Normal").textContent = data.normalDamLevel;
         document.getElementById("dam_Level_Warning").textContent = data.warningDamLevel;
