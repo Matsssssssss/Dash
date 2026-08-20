@@ -720,6 +720,9 @@ function renderVehicleList() {
         `;
         vehicleList.appendChild(vehicleItem);
     });
+
+    // Make map visibility match sidebar
+    syncFilteredVehiclesWithMap();
 }
 
 
@@ -990,6 +993,63 @@ function getFilteredTrackStarVehicles() {
     });
 }
 
+// SYNC MAP MARKERS WITH SIDEBAR FILTER
+function syncFilteredVehiclesWithMap() {
+
+    console.log("SYNCING SIDEBAR FILTER WITH MAP");
+
+    // Get vehicles currently visible in sidebar
+    const filteredVehicles = getFilteredTrackStarVehicles();
+
+    // Create a Set of their IDs for fast lookup
+    const filteredVehicleIds = new Set(
+        filteredVehicles.map(vehicle => String(vehicle.id))
+    );
+
+    console.log(
+        "FILTERED VEHICLE IDS:",
+        Array.from(filteredVehicleIds)
+    );
+
+    // Check every vehicle marker
+    trackStarMarkers.forEach(function(marker, vehicleId) {
+
+        const id = String(vehicleId);
+
+        if (filteredVehicleIds.has(id)) {
+
+            // Vehicle is in filtered sidebar → SHOW
+            if (!trackStarVehicleLayer.hasLayer(marker)) {
+
+                trackStarVehicleLayer.addLayer(marker);
+
+                console.log(
+                    "SHOWING VEHICLE:",
+                    id
+                );
+            }
+
+        } else {
+
+            // Vehicle is NOT in filtered sidebar → HIDE
+            if (trackStarVehicleLayer.hasLayer(marker)) {
+
+                trackStarVehicleLayer.removeLayer(marker);
+
+                console.log(
+                    "HIDING VEHICLE:",
+                    id
+                );
+            }
+        }
+    });
+
+    console.log(
+        "VISIBLE MAP MARKERS:",
+        trackStarVehicleLayer.getLayers().length
+    );
+}
+
 //Connect the Search and Filters
 function initializeVehicleSidebar() {
 
@@ -1090,9 +1150,7 @@ async function updateAllTrackStarVehicles() {
                 if (!marker) {
                     return;
                 }
-                marker.addTo(trackStarVehicleLayer);
-                trackStarMarkers.set( vehicleId,marker);
-                console.log("NEW VEHICLE MARKER:",vehicle.objectName);
+                trackStarMarkers.set(vehicleId, marker);
             }
 
             // UPDATE EXISTING MARKER
