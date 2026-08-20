@@ -48,4 +48,4 @@ async function loadLatestPDF(){
 
 loadLatestPDF();
 
-setInterval(loadLatestPDF,30000);
+setInterval(loadLatestPDF,900000);

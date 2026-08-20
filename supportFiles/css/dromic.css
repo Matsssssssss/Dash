@@ -190,6 +190,7 @@ h2 {
     flex: 1;
     height: 100%;
     min-width: 0;
+    border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
 

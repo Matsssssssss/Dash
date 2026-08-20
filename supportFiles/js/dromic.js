@@ -200,84 +200,84 @@ async function fetchTrackStarVehicles() {
 const TRACKSTAR_VEHICLE_ICONS = {
 
     Pickup: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/pickup.svg",
+        iconUrl: "../Images/Assets/Vehicles/pickup.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Grader: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/grader.svg",
+        iconUrl: "../Images/Assets/Vehicles/grader.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Loader: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/loader.svg",
+        iconUrl: "../Images/Assets/Vehicles/loader.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Backhoe_Loader: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/backhoe_loader.svg",
+        iconUrl: "../Images/Assets/Vehicles/backhoe_loader.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Compactor: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/compactor.svg",
+        iconUrl: "../Images/Assets/Vehicles/compactor.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     SUV: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/suv.svg",
+        iconUrl: "../Images/Assets/Vehicles/suv.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Bus: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/bus.svg",
+        iconUrl: "../Images/Assets/Vehicles/bus.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Tanker_Truck: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/tanker_truck.svg",
+        iconUrl: "../Images/Assets/Vehicles/tanker_truck.svg",
         iconSize: [45, 60],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Truck: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/truck.svg",
+        iconUrl: "../Images/Assets/Vehicles/truck.svg",
         iconSize: [20, 20],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Dumper_Truck: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/dumper_truck.svg",
+        iconUrl: "../Images/Assets/Vehicles/dumper_truck.svg",
         iconSize: [20, 20],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Default: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/default.svg",
+        iconUrl: "../Images/Assets/Vehicles/default.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Head_Unit: L.icon({
-        iconUrl: "../../Images/Assets/Vehicles/default.svg",
+        iconUrl: "../Images/Assets/Vehicles/default.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
@@ -555,14 +555,12 @@ function updateTrackStarMarker(marker, vehicle) {
         return;
     }
 
-    const lat =
-        Number(vehicle.lat);
-    const lng =
-        Number(vehicle.lng);
+    const newLat = Number(vehicle.lat);
+    const newLng = Number(vehicle.lng);
 
     if (
-        !Number.isFinite(lat) ||
-        !Number.isFinite(lng)
+        !Number.isFinite(newLat) ||
+        !Number.isFinite(newLng)
     ) {
         console.warn(
             "Invalid coordinates for vehicle:",
@@ -571,23 +569,82 @@ function updateTrackStarMarker(marker, vehicle) {
 
         return;
     }
-    // Move marker
-    marker.setLatLng([
-        lat,
-        lng
-    ]);
 
-    // Update popup
+    // Current marker position
+    const currentPosition = marker.getLatLng();
+
+    const oldLat = currentPosition.lat;
+    const oldLng = currentPosition.lng;
+
+    // Calculate movement distance
+    const latDifference = newLat - oldLat;
+    const lngDifference = newLng - oldLng;
+
+    // If the vehicle hasn't moved,
+    // don't perform an animation.
+    if (
+        Math.abs(latDifference) < 0.000001 &&
+        Math.abs(lngDifference) < 0.000001
+    ) {
+
+        marker.setPopupContent(
+            createTrackStarPopup(vehicle)
+        );
+
+        return;
+    }
+
+    // Animation duration in milliseconds
+    const duration = 1000;
+    const startTime = performance.now();
+
+    function animateMarker(currentTime) {
+
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Smooth easing
+        const easedProgress =
+            progress < 0.5
+                ? 2 * progress * progress
+                : 1 - Math.pow(
+                    -2 * progress + 2,
+                    2
+                ) / 2;
+
+        const animatedLat = oldLat +
+            (newLat - oldLat) * easedProgress;
+        const animatedLng = oldLng +
+            (newLng - oldLng) * easedProgress;
+
+        marker.setLatLng([animatedLat, animatedLng]);
+
+        if (progress < 1) {
+
+            requestAnimationFrame(
+                animateMarker
+            );
+
+        } else {
+
+            // Make absolutely sure
+            // the marker finishes exactly
+            // at the API coordinates.
+            marker.setLatLng([
+                newLat,
+                newLng
+            ]);
+        }
+    }
+
+    requestAnimationFrame(
+        animateMarker
+    );
+
+    // Update popup information
     marker.setPopupContent(
         createTrackStarPopup(vehicle)
     );
-
-    //Keep Selection
-    if (
-        selectedTrackStarVehicleId === String(vehicle.id)
-    ) {
-        highlightTrackStarMarker(marker);
-    }
 }
 
 //sidebar List
