@@ -1044,10 +1044,7 @@ function syncFilteredVehiclesWithMap() {
         }
     });
 
-    console.log(
-        "VISIBLE MAP MARKERS:",
-        trackStarVehicleLayer.getLayers().length
-    );
+    console.log("VISIBLE MAP MARKERS:", trackStarVehicleLayer.getLayers().length);
 }
 
 //Connect the Search and Filters
@@ -1209,6 +1206,58 @@ async function updateAllTrackStarVehicles() {
 
     finally {
         trackStarUpdating = false;
+    }
+}
+
+// TRACKSTAR START / SHOW BUTTON
+async function startOrShowTrackStarVehicles() {
+
+    const button =document.getElementById("showAllVehicles");
+
+    if (!button) {
+        console.warn("Start/Show button not found.");
+        return;
+    }
+
+    // START MODE
+    if (button.dataset.mode === "start") {
+
+        console.log("STARTING TRACKSTAR FROM SIDEBAR BUTTON");
+
+        // Change button temporarily
+        button.textContent = "Loading...";
+        button.disabled = true;
+
+        // Start TrackStar auto update
+        startTrackStarAutoUpdate();
+
+        // Give the initial API update a chance to complete
+        await new Promise(function(resolve) {
+            setTimeout(resolve, 500);
+        });
+
+        // Change button state
+        button.dataset.mode = "show";
+        button.textContent = "Show";
+        button.disabled = false;
+
+        console.log("TRACKSTAR STARTED");
+        return;
+    }
+
+    // SHOW MODE
+    if (button.dataset.mode === "show") {
+
+        console.log("SHOWING FILTERED TRACKSTAR VEHICLES");
+
+        // Show only vehicles currently
+        // present in the filtered sidebar
+        syncFilteredVehiclesWithMap();
+
+        console.log(
+            "FILTERED VEHICLES SHOWN:",
+            getFilteredTrackStarVehicles().length
+        );
     }
 }
 
@@ -1513,11 +1562,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const showAllButton = document.getElementById("showAllVehicles");
 
     if (showAllButton) {
-        showAllButton.addEventListener(
-            "click",
-            showAllTrackStarVehicles
-        );
+        showAllButton.dataset.mode = "start";
+        showAllButton.textContent = "Start";
+        showAllButton.addEventListener("click", startOrShowTrackStarVehicles);
     }
+
     // Hide All button
     const hideAllButton = document.getElementById("hideAllVehicles");
 

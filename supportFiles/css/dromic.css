@@ -30,7 +30,7 @@ h2 {
     background: #1a2b52d7;
 }
 
-
+/*
 .sumarry-reports {
 
     background-image:
@@ -41,8 +41,8 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
     min-height: 1000px;
-}
-/*
+}*/
+
 .map-interface {
     display: flex;
     width: 100%;
@@ -184,7 +184,7 @@ h2 {
     color: #777;
 }
 
-/*this section is for the map integration
+/*this section is for the map integration*/
 
 #iMap {
     flex: 1;
@@ -199,13 +199,13 @@ path:focus {
 }
 
 
-/* TRACKSTAR VEHICLE POPUP 
+/* TRACKSTAR VEHICLE POPUP */
 .trackstar-popup {
     width: clamp(100px, 180px, 250px);
     font-family: Arial, sans-serif;
 }
 
-/* HEADER 
+/* HEADER */
 .trackstar-popup-header {
     margin-bottom: 10px;
 }
@@ -227,7 +227,7 @@ path:focus {
     text-transform: uppercase;
 }
 
-/* STATUS ROW 
+/* STATUS ROW */
 .trackstar-popup-status {
     display: flex;
     flex-direction: row;
@@ -240,7 +240,7 @@ path:focus {
     font-size: clamp(0.5rem, 0.7rem, 1rem);
 }
 
-/*vehicle status case
+/*vehicle status case*/
 .status-inactive {
     width: 9px;
     height: 9px;
@@ -266,7 +266,7 @@ path:focus {
     background: #c5c222;
 }
 
-/* DATA 
+/* DATA */
 .trackstar-popup-data {
     display: flex;
     flex-direction: column;
@@ -289,7 +289,7 @@ path:focus {
     text-align: right;
 }
 
-/* LOCATION 
+/* LOCATION */
 .trackstar-popup-location {
     padding-top: 10px;
     border-top: 1px solid #ddd;
@@ -302,7 +302,7 @@ path:focus {
     margin-bottom: 4px;
 }
 
-/* FOOTER 
+/* FOOTER */
 .trackstar-popup-footer {
     margin-top: 10px;
     padding-top: 8px;
@@ -311,7 +311,7 @@ path:focus {
     opacity: 0.6;
 }
 
-/*vehicle interactability with sidebar
+/*vehicle interactability with sidebar*/
 .vehicle-list-item {
     position: relative;
     cursor: pointer;
@@ -418,4 +418,4 @@ path:focus {
         height: 600px;
         border-radius: 12px;
     }
-}*/
+}
