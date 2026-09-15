@@ -138,59 +138,42 @@ console.log(
     trackStarVehicleLayer
 );
 
-const TRACKSTAR_API_URL = "https://script.google.com/macros/s/AKfycby7y--gdqulGFIkl3GVuI5nfou4Fb_ISjxwL-ZTqK5BCvgTlEhdv1Cq16dql_b23j6J/exec";
+const TRACKSTAR_API_URL = "https://script.google.com/macros/s/AKfycbyROow9tF6N25MJH0XPHC0xjfDkNO2MYKpA2awqCWtKRJfOl11QPPkj4zcYmaD06LMq/exec";
 
 async function fetchTrackStarVehicles() {
-    try {
-
+    try
+    {
         console.log("========================================");
         console.log("TRACKSTAR API REQUEST");
         console.log("========================================");
 
-        const response =
-            await fetch(TRACKSTAR_API_URL);
-
-        if (!response.ok) {
-            throw new Error(
-                "API HTTP error: " +
-                response.status
-            );
+        const response = await fetch(TRACKSTAR_API_URL);
+        if (!response.ok)
+        {
+            throw new Error("API HTTP error: " + response.status);
         }
 
-        const data =
-            await response.json();
-
-        console.log(
-            "TRACKSTAR API RESPONSE:",
-            data
-        );
+        const data = await response.json();
+        console.log("TRACKSTAR API RESPONSE:", data);
 
         // Validate API response
-        if (!data.success) {
-            throw new Error(
-                data.error ||
-                "TrackStar API returned success=false"
-            );
+        if (!data.success)
+        {
+            throw new Error( data.error ||"TrackStar API returned success=false");
         }
 
-        if (!Array.isArray(data.vehicles)) {
-            throw new Error(
-                "TrackStar API returned an invalid vehicles array."
-            );
+        if (!Array.isArray(data.vehicles))
+        {
+            throw new Error("TrackStar API returned an invalid vehicles array.");
         }
 
-        console.log (
-            "VEHICLES RECEIVED:",
-            data.vehicles.length
-        );
+        console.log ("VEHICLES RECEIVED:", data.vehicles.length);
         return data.vehicles;
     } 
 
-    catch (error) {
-        console.error(
-            "TRACKSTAR API ERROR:",
-            error
-        );
+    catch (error)
+    {
+        console.error("TRACKSTAR API ERROR:", error);
         return [];
     }
 }
@@ -297,20 +280,13 @@ const TRACKSTAR_DEFAULT_ICON = L.icon({
 });
 
 // GET TRACKSTAR VEHICLE ICON
-function getTrackStarVehicleIcon(vehicle) {
+function getTrackStarVehicleIcon(vehicle)
+{
+    const vehicleType = String(vehicle.vehicleType || "").trim();
+    console.log("SELECTING ICON:", vehicleType);
 
-    const vehicleType =
-        String(
-            vehicle.vehicleType || ""
-        ).trim();
-
-    console.log(
-        "SELECTING ICON:",
-        vehicleType
-    );
-
-    switch (vehicleType) {
-
+    switch (vehicleType)
+    {
         // PICKUP
         case "Pickup":
             return TRACKSTAR_VEHICLE_ICONS.Pickup;
@@ -360,12 +336,7 @@ function getTrackStarVehicleIcon(vehicle) {
 
         // FALLBACK
         default:
-
-            console.warn(
-                "No custom icon for vehicle type:",
-                vehicleType,
-                "Using default TrackStar icon."
-            );
+            console.warn("No custom icon for vehicle type:", vehicleType, "Using default TrackStar icon.");
             return TRACKSTAR_DEFAULT_ICON;
     }
 }
