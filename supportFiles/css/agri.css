@@ -37,8 +37,8 @@ h3 {
     border-top-right-radius: 0px;
 
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.800), rgba(255, 255, 255, 0.800)),
-        url("../Images/agri/ricefield-hit-by-typhoon.jpg");
+        linear-gradient(rgba(187, 249, 199, 0.75)),
+        url("../../Images/agri/ricefield-hit-by-typhoon.jpg");
     
     background-size: cover;
     background-position: center;
