@@ -1,0 +1,32 @@
+{
+  "name": "dash",
+  "version": "1.0.0",
+  "description": "This is a live data feeding for typhoon dashboard that visualization of data figures and can be use for helping the executives for their decision making, faster actions, and boosting the effectiveness of operations.",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matsssssssss/Dash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Matsssssssss/Dash/issues"
+  },
+  "homepage": "https://github.com/Matsssssssss/Dash#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true
+  }
+}
