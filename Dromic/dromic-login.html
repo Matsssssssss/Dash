@@ -46,20 +46,72 @@
             <div class="login-container">
                 <h2>Login</h2>
 
-                <form>
+                <form id="loginForm">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Not working yet" required>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Not working yet" required>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="login-button">Login</button>
+                    <button type="submit" id="loginButton" class="login-button">Login</button>
                 </form>
+
+                <p id="message"></p>
             </div>
         </section>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const message = document.getElementById("message");
+        const loginButton = document.getElementById("loginButton");
+
+        loginForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            //message.textContent = "";
+            loginButton.disabled = true;
+            loginButton.textContent = "Logging in...";
+
+            try {
+                const response = await fetch("http://localhost:3000/api/login", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    credentials: "include", body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                });
+
+                const data = await response.json();
+
+                // LOGIN SUCCESSFUL
+                if (response.ok) { 
+                    message.textContent = "Login successful!"; 
+                    // Optional: 
+                    // Redirect to your dashboard 
+                    // window.location.href = "dashboard.html"; 
+                }
+
+                // LOGIN FAILED
+                else { 
+                    message.textContent = data.message || "Invalid username or password."; 
+                }
+            } 
+
+            catch (error) {
+                console.error(error); message.textContent = "Unable to connect to the server."; 
+            }
+
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+        });
+    </script>
     </main>
 </body>
 </html>
