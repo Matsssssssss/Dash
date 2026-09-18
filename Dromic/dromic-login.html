@@ -79,7 +79,7 @@
             loginButton.textContent = "Logging in...";
 
             try {
-                const response = await fetch("http://localhost:3000/api/login", {
+                const response = await fetch("http://127.0.0.1:3000/api/login", {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     credentials: "include", body: JSON.stringify({
@@ -93,9 +93,8 @@
                 // LOGIN SUCCESSFUL
                 if (response.ok) { 
                     message.textContent = "Login successful!"; 
-                    // Optional: 
-                    // Redirect to your dashboard 
-                    // window.location.href = "dashboard.html"; 
+
+                    setTimeout(() => {window.location.href = ("dromic-report.html");}, 500);
                 }
 
                 // LOGIN FAILED

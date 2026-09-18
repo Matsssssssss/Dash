@@ -19,6 +19,47 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
 });
 });
 
+async function checkAuthentication() {
+    try {
+        const response = await fetch(
+            "http://127.0.0.1:3000/api/auth/check",
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        );
+
+        const data = await response.json();
+
+        // SESSION IS INVALID / USER NOT LOGGED IN
+        if (response.status === 401) {
+            console.log("User is not authenticated.");
+            window.location.href = ("dromic-login.html");
+            return;
+        }
+
+        // OTHER SERVER ERROR
+        if (!response.ok) {
+            console.error("Authentication server returned:", response.status);
+            return;
+        }
+
+        // AUTHENTICATED
+        if (data.authenticated) {
+            console.log(
+                "Authenticated as:", data.username
+            );
+            // Continue loading the dashboard
+        }
+    }
+
+    catch (error) {
+        console.error("Could not connect to authentication server:", error);
+    }
+}
+// CHECK AUTHENTICATION
+checkAuthentication();
+
 
 //Map Localization
 const map = L.map("iMap", {
@@ -34,10 +75,8 @@ const panayBounds = L.latLngBounds(
     [11.80, 123.60]    // Northeast
 );
 
-
 map.setMaxBounds(panayBounds);
 map.fitBounds(panayBounds);
-
 
 //OSM integration
 L.tileLayer(
@@ -1542,9 +1581,32 @@ document.addEventListener("DOMContentLoaded", function() {
     const hideAllButton = document.getElementById("hideAllVehicles");
 
     if (hideAllButton) {
-        hideAllButton.addEventListener(
-            "click",
-            hideAllTrackStarVehicles
+        hideAllButton.addEventListener("click", hideAllTrackStarVehicles);
+    }
+});
+
+//Logout function, deleting the session cookie and redirecting to login page
+const logoutButton = document.getElementById("logoutButton");
+logoutButton.addEventListener("click", async () => {
+    try {
+        const response = await fetch(
+            "http://127.0.0.1:3000/api/logout",
+            {
+                method: "POST",
+                credentials: "include"
+            }
+        );
+        const data = await response.json();
+        console.log(data.message);
+
+        // Return to login page
+        window.location.href = ("dromic-login.html");
+    } 
+
+    catch (error) {
+        console.error(
+            "Logout failed:",
+            error
         );
     }
 });
