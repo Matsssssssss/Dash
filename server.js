@@ -99,7 +99,7 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
-
+//AUTHENTICATION CHECK
 app.get("/api/auth/check", (req, res) => {
   console.log("AUTH CHECK");
   console.log("Cookies received:", req.cookies);
