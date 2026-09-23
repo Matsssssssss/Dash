@@ -1,11 +1,20 @@
+require("dotenv").config();
+
 const express = require("express");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const { Pool } = require("pg");
 
 const app = express();
 const PORT = 3000;
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  }
+});
 
 //Middleware
 app.use(cors({origin: "http://127.0.0.1:5500", credentials: true}));
@@ -21,12 +30,19 @@ app.use(cookieParser());
 //
 // Generate your own hash with:
 // const hash = await bcrypt.hash("your-password", 12);
+/*
 const users = [
     {
         username: "admin",
         passwordHash: "$2b$12$gg0s3nOM4e1AxmgPk5K2F.fmf3zI8WzDgYSay5DWwHyvqzvbfcy7u"
     }
-];
+];*/
+
+pool.query("SELECT NOW()").then(result => {
+  console.log("PostgreSQL connected!");
+  console.log("Database time:", result.rows[0].now);
+})
+.catch(error => {console.error("PostgreSQL connection failed:", error);});
 
 
 // ----- SERVER-SIDE SESSION STORE -----
@@ -52,7 +68,16 @@ app.post("/api/login", async (req, res) => {
       }
 
       // Find user
-      const user = users.find(user => user.username === username);
+      const result = await pool.query(
+        `
+        SELECT id, username, password_hash
+        FROM users
+        WHERE username = $1
+        `,
+        [username]
+      );
+
+      const user = result.rows[0];
 
       // Don't reveal whether the username exists
       if (!user) {
@@ -62,7 +87,7 @@ app.post("/api/login", async (req, res) => {
       }
 
       // Compare supplied password with stored hash
-      const passwordValid = await bcrypt.compare(password, user.passwordHash);
+      const passwordValid = await bcrypt.compare(password, user.password_hash);
 
       if (!passwordValid) {
         return res.status(401).json({
