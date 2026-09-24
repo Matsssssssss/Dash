@@ -19,8 +19,12 @@ const pool = new Pool({
 //Middleware
 app.use(cors({origin: "http://127.0.0.1:5500", credentials: true}));
 app.use(express.json());
-app.use(express.static("Dromic"));
 app.use(cookieParser());
+
+app.use(express.static("Dromic"));
+app.get("/", (req, res) => {
+  res.redirect("/dromic-login.html");
+});
 
 // --------------------------------------------------
 // Example user
