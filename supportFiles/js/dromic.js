@@ -222,84 +222,84 @@ async function fetchTrackStarVehicles() {
 const TRACKSTAR_VEHICLE_ICONS = {
 
     Pickup: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/pickup.svg",
+        iconUrl: "Assets/Vehicles/pickup.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Grader: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/grader.svg",
+        iconUrl: "Assets/Vehicles/grader.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Loader: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/loader.svg",
+        iconUrl: "Assets/Vehicles/loader.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Backhoe_Loader: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/backhoe_loader.svg",
+        iconUrl: "Assets/Vehicles/backhoe_loader.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Compactor: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/compactor.svg",
+        iconUrl: "Assets/Vehicles/compactor.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     SUV: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/suv.svg",
+        iconUrl: "Assets/Vehicles/suv.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Bus: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/bus.svg",
+        iconUrl: "Assets/Vehicles/bus.svg",
         iconSize: [40, 40],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Tanker_Truck: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/tanker_truck.svg",
+        iconUrl: "Assets/Vehicles/tanker_truck.svg",
         iconSize: [45, 60],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Truck: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/truck.svg",
+        iconUrl: "Assets/Vehicles/truck.svg",
         iconSize: [20, 20],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Dumper_Truck: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/dumper_truck.svg",
+        iconUrl: "Assets/Vehicles/dumper_truck.svg",
         iconSize: [20, 20],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Default: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/default.svg",
+        iconUrl: "Assets/Vehicles/default.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
     }),
 
     Head_Unit: L.icon({
-        iconUrl: "../Images/Assets/Vehicles/default.svg",
+        iconUrl: "Assets/Vehicles/default.svg",
         iconSize: [30, 30],
         iconAnchor: [18, 18],
         popupAnchor: [0, -21]
@@ -1590,7 +1590,7 @@ const logoutButton = document.getElementById("logoutButton");
 logoutButton.addEventListener("click", async () => {
     try {
         const response = await fetch(
-            "http://127.0.0.1:3000/api/logout",
+            "api/logout",
             {
                 method: "POST",
                 credentials: "include"
