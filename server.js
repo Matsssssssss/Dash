@@ -17,7 +17,8 @@ const pool = new Pool({
 });
 
 //Middleware
-app.use(cors({origin: "http://127.0.0.1:5500", credentials: true}));
+const allowedOrigin = process.env.FRONTEND_ORIGIN;
+app.use(cors({origin: allowedOrigin, credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
 
