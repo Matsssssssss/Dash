@@ -22,7 +22,8 @@ app.use(cors({origin: allowedOrigin, credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static("Dash"));
+app.use(express.static("Dromic"));
+app.use(express.static("supportFiles"));
 app.get("/", (req, res) => {
   res.redirect("/dromic-login.html");
 });
