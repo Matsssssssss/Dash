@@ -24,6 +24,7 @@ app.use(cookieParser());
 
 app.use(express.static("Dromic"));
 app.use(express.static("supportFiles"));
+app.use(express.static("Images"));
 app.get("/", (req, res) => {
   res.redirect("/dromic-login.html");
 });
