@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const { Pool } = require("pg");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -101,13 +101,13 @@ app.post("/api/login", async (req, res) => {
       // Store session SERVER-SIDE
       sessions.set(sessionId, {username: user.username, createdAt: Date.now()});
       console.log("Current sessions:", sessions);
+      const isProduction = process.env.NODE_ENV === "production";
 
       // In production, store this session ID
-      // server-side (database/Redis/etc.).
       // This example only demonstrates the flow.
       res.cookie("session", sessionId, {
         httpOnly: true,
-        secure: false,       // Requires HTTP
+        secure: isProduction, // Requires HTTPS in production
         sameSite: "lax",
         path: "/",
         maxAge: 60 * 60 * 1000 // 1 hour
@@ -180,4 +180,5 @@ app.post("/api/logout", (req, res) => {
     });
 });
 
-app.listen(PORT, () => {console.log(`Server running on http://localhost:${PORT}`);});
+app.listen(PORT, () => {console.log(`Server running on port ${PORT}`);});
+// app.listen(PORT, () => {console.log(`Server running on http://localhost:${PORT}`);});
