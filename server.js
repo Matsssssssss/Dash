@@ -21,9 +21,6 @@ const allowedOrigin = process.env.FRONTEND_ORIGIN;
 app.use(cors({origin: allowedOrigin, credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
-app.get("/", (req, res) => {
-  res.redirect("/dromic-login.html");
-});
 
   //public route
 app.get("/dromic-login", (req, res) => {
@@ -33,6 +30,10 @@ app.get("/dromic-login", (req, res) => {
   //protected route
 app.get("/dromic", requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, "Dromic", "dromic-report.html"));
+});
+ //redirect root to login page
+app.get("/", (req, res) => {
+  res.redirect("/dromic-login");
 });
 
 app.use(express.static("supportFiles"));
