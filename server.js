@@ -44,9 +44,9 @@ app.get("/", (req, res) => {
 });
 
 //blocking old routes
-app.get("https://matsssssssss.github.io/Dash/Dromic/dromic-login.html", (req, res) => {
+app.get("/dromic-login.html", (req, res) => {
   res.sendStatus(404).send("Not Found");});
-app.get("https://matsssssssss.github.io/Dash/Dromic/dromic-report.html", (req, res) => {
+app.get("/dromic-report.html", (req, res) => {
   res.sendStatus(404).send("Not Found");});
 
 app.use(express.static("supportFiles"));
