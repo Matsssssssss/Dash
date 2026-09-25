@@ -1600,7 +1600,7 @@ logoutButton.addEventListener("click", async () => {
         console.log(data.message);
 
         // Return to login page
-        window.location.href = ("dromic-login.html");
+        window.location.href = ("/dromic-login");
     } 
 
     catch (error) {
