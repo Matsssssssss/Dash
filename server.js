@@ -31,6 +31,7 @@ app.get("/dromic-login", (req, res) => {
 app.get("/dromic", requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, "Dromic", "dromic-report.html"));
 });
+
  //redirect root to login page
 app.get("/", (req, res) => {
   res.redirect("/dromic-login");
