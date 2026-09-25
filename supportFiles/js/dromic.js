@@ -34,7 +34,7 @@ async function checkAuthentication() {
         // SESSION IS INVALID / USER NOT LOGGED IN
         if (response.status === 401) {
             console.log("User is not authenticated.");
-            window.location.href = ("dromic-login");
+            window.location.href = ("/dromic-login");
             return;
         }
 

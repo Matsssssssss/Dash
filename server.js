@@ -32,6 +32,12 @@ app.get("/dromic", requireAuth, (req, res) => {
     res.sendFile(path.join(__dirname, "Dromic", "dromic-report.html"));
 });
 
+ //protected route for api
+app.get("/api/dromic/data", requireApiAuth, (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "Dromic", "dromic-report.html"));
+});
+
  //redirect root to login page
 app.get("/", (req, res) => {
   res.redirect("/dromic-login");
@@ -53,9 +59,25 @@ pool.query("SELECT NOW()").then(result => {
 const sessions = new Map();
 
 //requires Authentication for certain routes
+//html page protection
 function requireAuth(req, res, next) {
   const sessionId = req.cookies.session;
+  if (!sessionId) {
+    return res.redirect("/dromic-login");
+  }
 
+  const session = sessions.get(sessionId);
+  if (!session) {
+    return res.redirect("/dromic-login");
+  }
+
+  req.user = session;
+  next();
+}
+
+//api protection
+function requireApiAuth(req, res, next) {
+  const sessionId = req.cookies.session;
   if (!sessionId) {
     return res.status(401).json({
       message: "Authentication required."
@@ -65,7 +87,7 @@ function requireAuth(req, res, next) {
   const session = sessions.get(sessionId);
   if (!session) {
     return res.status(401).json({
-      message: "Invalid or expired session."
+     message: "Invalid or expired session."
     });
   }
 
