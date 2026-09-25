@@ -4,6 +4,3 @@ Process Flow:
 {
     raw data --> google spreadsheet --> google appscript --> javascript --> html
 }
-
-npm install bcrypt, nodejs, cors, express, dotenv
-//npx nodemon server.js
