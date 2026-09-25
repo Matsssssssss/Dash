@@ -21,6 +21,9 @@ const allowedOrigin = process.env.FRONTEND_ORIGIN;
 app.use(cors({origin: allowedOrigin, credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
+app.get("/", (req, res) => {
+  res.redirect("/dromic-login.html");
+});
 
   //public route
 app.get("/dromic-login", (req, res) => {
@@ -34,10 +37,6 @@ app.get("/dromic", requireAuth, (req, res) => {
 
 app.use(express.static("supportFiles"));
 app.use(express.static("Images"));
-app.get("/", (req, res) => {
-  res.redirect("/dromic-login.html");
-});
-
 
 // Generate own hash
 pool.query("SELECT NOW()").then(result => {
