@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const path = require("path");
 const express = require("express");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
@@ -22,48 +22,60 @@ app.use(cors({origin: allowedOrigin, credentials: true}));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(express.static("Dromic"));
+  //public route
+app.get("/dromic-login", (req, res) => {
+  res.sendFile(path.join(__dirname, "Dromic", "dromic-login.html"));
+});
+
+  //protected route
+app.get("/dromic", requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, "Dromic", "dromic-report.html"));
+});
+
 app.use(express.static("supportFiles"));
 app.use(express.static("Images"));
 app.get("/", (req, res) => {
   res.redirect("/dromic-login.html");
 });
 
-// --------------------------------------------------
-// Example user
-// --------------------------------------------------
-// In a real application, users should come from a
-// database. Never store plain-text passwords.
-//
-// Generate your own hash with:
-// const hash = await bcrypt.hash("your-password", 12);
-/*
-const users = [
-    {
-        username: "admin",
-        passwordHash: "$2b$12$gg0s3nOM4e1AxmgPk5K2F.fmf3zI8WzDgYSay5DWwHyvqzvbfcy7u"
-    }
-];*/
 
+// Generate own hash
 pool.query("SELECT NOW()").then(result => {
   console.log("PostgreSQL connected!");
   console.log("Database time:", result.rows[0].now);
 })
 .catch(error => {console.error("PostgreSQL connection failed:", error);});
 
-
 // ----- SERVER-SIDE SESSION STORE -----
 // The browser only receives the session ID.
 // The actual session information stays here:
-// sessionId → username
-// Example: "abc123..." → "admin"
 const sessions = new Map();
+
+//requires Authentication for certain routes
+function requireAuth(req, res, next) {
+  const sessionId = req.cookies.session;
+
+  if (!sessionId) {
+    return res.status(401).json({
+      message: "Authentication required."
+    });
+  }
+
+  const session = sessions.get(sessionId);
+  if (!session) {
+    return res.status(401).json({
+      message: "Invalid or expired session."
+    });
+  }
+
+  req.user = session;
+  next();
+}
 
 // --------------------------------------------------
 // Login endpoint
 // --------------------------------------------------
 app.post("/api/login", async (req, res) => {
-
     try {
       const { username, password } = req.body;
 
@@ -153,7 +165,7 @@ app.get("/api/auth/check", (req, res) => {
     return res.status(401).json({
       authenticated: false,
       message: "Session expired or invalid."
-      });
+    });
   }
 
   return res.status(200).json({
@@ -166,25 +178,23 @@ app.get("/api/auth/check", (req, res) => {
 // LOGOUT
 // --------------------------------------------------
 app.post("/api/logout", (req, res) => {
+  const sessionId = req.cookies.session;
+  if (sessionId) {
+    // Remove session from server
+    sessions.delete(sessionId);
+  }
 
-    const sessionId = req.cookies.session;
+  // Remove browser cookie
+  res.clearCookie("session", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax",
+    path: "/"
+  });
 
-    if (sessionId) {
-        // Remove session from server
-        sessions.delete(sessionId);
-    }
-
-    // Remove browser cookie
-    res.clearCookie("session", {
-        httpOnly: true,
-        secure: false,
-        sameSite: "lax",
-        path: "/"
-    });
-
-    return res.status(200).json({
-        message: "Logout successful."
-    });
+  return res.status(200).json({
+    message: "Logout successful."
+  });
 });
 
 app.listen(PORT, "0.0.0.0", () => {console.log(`Server running on port ${PORT}`);});
