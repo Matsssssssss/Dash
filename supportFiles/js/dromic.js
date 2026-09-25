@@ -22,7 +22,7 @@ document.querySelectorAll(".nav-links a").forEach(link=>{
 async function checkAuthentication() {
     try {
         const response = await fetch(
-            "http://127.0.0.1:3000/api/auth/check",
+            "/api/auth/check",
             {
                 method: "GET",
                 credentials: "include"
@@ -34,7 +34,7 @@ async function checkAuthentication() {
         // SESSION IS INVALID / USER NOT LOGGED IN
         if (response.status === 401) {
             console.log("User is not authenticated.");
-            window.location.href = ("dromic-login.html");
+            window.location.href = ("dromic-login");
             return;
         }
 
