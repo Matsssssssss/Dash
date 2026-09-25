@@ -43,6 +43,12 @@ app.get("/", (req, res) => {
   res.redirect("/dromic-login");
 });
 
+//blocking old routes
+app.get("https://matsssssssss.github.io/Dash/Dromic/dromic-login.html", (req, res) => {
+  res.sendStatus(404).send("Not Found");});
+app.get("https://matsssssssss.github.io/Dash/Dromic/dromic-report.html", (req, res) => {
+  res.sendStatus(404).send("Not Found");});
+
 app.use(express.static("supportFiles"));
 app.use(express.static("Images"));
 
